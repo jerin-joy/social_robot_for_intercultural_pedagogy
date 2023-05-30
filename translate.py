@@ -12,6 +12,8 @@ def main():
     
     r = sr.Recognizer()
 
+    speech_input = input("Specify the code for the input language: ")
+
     with sr.Microphone() as source:
         r.adjust_for_ambient_noise(source)
 
@@ -21,7 +23,7 @@ def main():
 
         try:
 
-            text = r.recognize_google(audio, language = "en-GB")
+            text = r.recognize_google(audio, language = speech_input)
 
         except Exception as e:
             print("Error: " + str(e))
