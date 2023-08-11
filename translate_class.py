@@ -5,7 +5,7 @@ from typing import List, Tuple
 from google.cloud.speech_v2 import SpeechClient
 from google.cloud.speech_v2.types import cloud_speech
 
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r"google_key.json"
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r"decent-digit-395614-9ef078739d62.json"
 
 class SpeechToTextTranslator:
     def __init__(self, project_id: str, language_codes: List[str], audio_file: str):
