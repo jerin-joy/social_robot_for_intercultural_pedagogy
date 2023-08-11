@@ -13,6 +13,21 @@ class SpeechToTextTranslator:
         self.language_codes = language_codes
         self.audio_file = audio_file
 
+    def record(self, audio_file: str) -> None:
+        r = sr.Recognizer()
+
+        with sr.Microphone() as source:
+            r.adjust_for_ambient_noise(source)
+
+            print("Please say something.. ")
+
+            audio = r.listen(source)
+
+        # Save the recorded audio to a file
+        with open(audio_file, "wb") as f:
+            f.write(audio.get_wav_data())
+
+
     def transcribe_multiple_languages_v2(self) -> Tuple[str, cloud_speech.RecognizeResponse]:
         """Transcribe an audio file."""
         # Set the path to your API key
@@ -82,25 +97,12 @@ class SpeechToTextTranslator:
 
 
 # Set the project ID, list of languages, and path to the audio file
-project_id = "top-amplifier-386514"
-language_codes = ["en-US", "de-DE", "it-IT"]
-audio_file = "output.wav"
+# project_id = "top-amplifier-386514"
+# language_codes = ["en-US", "de-DE", "it-IT"]
+# audio_file = "output.wav"
 
-r = sr.Recognizer()
+# translator = SpeechToTextTranslator(project_id, language_codes, audio_file)
 
-with sr.Microphone() as source:
-    r.adjust_for_ambient_noise(source)
+# target_language = input("Specify the code for the target language: ")
 
-    print("Please say something.. ")
-
-    audio = r.listen(source)
-
-# Save the recorded audio to a file
-with open(audio_file, "wb") as f:
-    f.write(audio.get_wav_data())
-
-translator = SpeechToTextTranslator(project_id, language_codes, audio_file)
-
-target_language = input("Specify the code for the target language: ")
-
-translator.synthesize_speech(target_language)
+# translator.synthesize_speech(target_language)
