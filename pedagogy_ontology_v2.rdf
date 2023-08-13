@@ -31,6 +31,15 @@
     
 
 
+    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#hasCountry -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#hasCountry">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Continent"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Country"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#hasGreeting -->
 
     <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#hasGreeting">
@@ -342,6 +351,12 @@
     
 
 
+    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Language -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Language"/>
+    
+
+
     <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Lasagna -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Lasagna">
@@ -649,7 +664,7 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Bonjour">
         <rdf:type rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#FrenchGreeting"/>
-        <pedagogy-ontology-v2:hasGreeting rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#FrenchGreeting"/>
+        <pedagogy-ontology-v2:hasCountry rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#France"/>
         <pedagogy-ontology-v2:hasTimeOfDay rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Morning"/>
     </owl:NamedIndividual>
     
@@ -659,7 +674,6 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Bonsoir">
         <rdf:type rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#FrenchGreeting"/>
-        <pedagogy-ontology-v2:hasGreeting rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#FrenchGreeting"/>
         <pedagogy-ontology-v2:hasTimeOfDay rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Evening"/>
     </owl:NamedIndividual>
     
@@ -694,14 +708,6 @@
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#France">
         <rdf:type rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Country"/>
         <pedagogy-ontology-v2:hasContinent rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Europe"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#FrenchGreeting -->
-
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#FrenchGreeting">
-        <rdf:type rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#FrenchGreeting"/>
     </owl:NamedIndividual>
     
 

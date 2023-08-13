@@ -1,5 +1,25 @@
-# from translate_class import SpeechToTextTranslator
+from translate_class import SpeechToTextTranslator
 from openai_class import InformationExtractor
+from owlready2 import get_ontology, default_world
+from datetime import datetime
+
+now = datetime.now()
+hour = now.hour
+
+# Check if it's morning or evening
+if 6 <= hour < 18:
+    time = "Morning"
+else:
+    time = "Evening"
+
+class SparqlQuery:
+    def __init__(self, ontology_path):
+        self.ontology = get_ontology(ontology_path).load()
+    
+    def run_query(self, query):
+        results = default_world.sparql(query)
+        for row in results:
+            print(row[0].name)
 
 print("Once upon a time, in a distant galaxy, there was a friendly robot named Nao. ")
 print("Nao came from a faraway alien planet called Zog, where robots lived in harmony with nature.")
@@ -8,24 +28,42 @@ print("The children were amazed to see an alien robot standing in front of them.
 print('Nao: "Hello, young adventurers! I come from a planet called Zog. Where do you come from?"')
 
 # Set the project ID, list of languages, and path to the audio file
-# project_id = "top-amplifier-386514"
-# language_codes = ["en-US", "de-DE", "it-IT"]
-# audio_file = "output.wav"
+project_id = "decent-digit-395614"
+language_codes = ["en-US", "de-DE", "it-IT"]
+audio_file = "output.wav"
 
-# translator = SpeechToTextTranslator(project_id, language_codes, audio_file)
+translator = SpeechToTextTranslator(project_id, language_codes, audio_file)
 
-# translator.record(audio_file)
+translator.record(audio_file)
 
-# target_language = input("Specify the code for the target language: ")
+target_language = input("Specify the code for the target language: ")
 
-# text = translator.translate_text(target_language)
-
-text = "I come from Berlin"
+text = translator.translate_text(target_language)
 
 print(f"Translated text: {text}")
 
 information_extractor = InformationExtractor()
 
-prompt = f"Extract the name of the country from the following text: {text}\nCountry: "
+prompt = f"Which country would someone be if he says: {text}. Output just the country name"
 
-print(information_extractor.extract_information(text, prompt))
+country = information_extractor.extract_information(text, prompt, temperature = 0)
+
+print(country)
+
+# Create an instance of the SparqlQuery class
+sparql_query = SparqlQuery("/home/jerin/robotics/Thesis/pedagogy_ontology_v2.rdf")
+
+# Define the SPARQL query
+query = """
+    PREFIX : <http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#>
+    SELECT ?greeting
+    WHERE {{
+        ?greeting :hasCountry :{} .
+        ?greeting :hasTimeOfDay :{} .
+    }}
+""".format(country, time)
+
+# Run the query and print the results
+results = default_world.sparql(query)
+for row in results:
+    print(f"{(row[0].name)}, What is your favourite dish?")

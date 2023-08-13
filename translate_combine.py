@@ -13,7 +13,7 @@ def transcribe_multiple_languages_v2(
 ) -> cloud_speech.RecognizeResponse:
     """Transcribe an audio file."""
     # Set the path to your API key
-    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r"google_key.json"
+    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r"decent-digit-395614-9ef078739d62.json"
 
     # Instantiates a client
     client = SpeechClient()
@@ -44,7 +44,7 @@ def transcribe_multiple_languages_v2(
 
 
 # Set the project ID, list of languages, and path to the audio file
-project_id = "top-amplifier-386514"
+project_id = "decent-digit-395614"
 language_codes = ["en-US", "de-DE", "it-IT"]
 audio_file = "output.wav"
 
