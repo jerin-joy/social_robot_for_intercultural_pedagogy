@@ -36,9 +36,10 @@ translator = SpeechToTextTranslator(project_id, language_codes, audio_file)
 
 translator.record(audio_file)
 
-transcribed_text = translator.transcribe_multiple_languages_v2()
+transcribed_text, og_language = translator.transcribe_multiple_languages_v2()
 
-print(transcribed_text)
+# print(transcribed_text)
+# print(og_language)
 
 # target_language = input("Specify the code for the target language: ")
 
@@ -71,5 +72,9 @@ query = """
 # Run the query and print the combined results
 results = default_world.sparql(query)
 for row in results:
-    print(f"{row[0].name}, What is your favourite dish? Do you like {row[1].name}?")
+    ontology_text = f"{row[0].name}, What is your favourite dish? Do you like {row[1].name}?"
+
+text = translator.translate_text(og_language, ontology_text)
+
+print(f"Translated text: {text}")
 

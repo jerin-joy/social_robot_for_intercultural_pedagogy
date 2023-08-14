@@ -60,17 +60,17 @@ class SpeechToTextTranslator:
             pass
 
         # return result.alternatives[0].transcript, response
-        return result.alternatives[0].transcript
+        return result.alternatives[0].transcript, result.language_code
 
-    # def translate_text(self, target_language: str) -> str:
-    #     translate_client = translate_v2.Client()
+    def translate_text(self, target_language: str, ontology_text: str) -> str:
+        translate_client = translate_v2.Client()
         
-    #     # Call the function to transcribe the audio file
-    #     text, response = self.transcribe_multiple_languages_v2()
+        # Call the function to transcribe the audio file
+        # text, response = self.transcribe_multiple_languages_v2()
         
-    #     output = translate_client.translate(text, target_language=target_language)
+        output = translate_client.translate(ontology_text, target_language=target_language)
         
-    #     return output['translatedText']
+        return output['translatedText']
 
     def synthesize_speech(self, target_language: str) -> None:
         speech_client = texttospeech_v1.TextToSpeechClient()
