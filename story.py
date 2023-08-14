@@ -36,19 +36,23 @@ translator = SpeechToTextTranslator(project_id, language_codes, audio_file)
 
 translator.record(audio_file)
 
-target_language = input("Specify the code for the target language: ")
+transcribed_text = translator.transcribe_multiple_languages_v2()
 
-text = translator.translate_text(target_language)
+print(transcribed_text)
 
-print(f"Translated text: {text}")
+# target_language = input("Specify the code for the target language: ")
+
+# text = translator.translate_text(target_language)
+
+# print(f"Translated text: {text}")
 
 information_extractor = InformationExtractor()
 
-prompt = f"Which country would someone be if he says: {text}. Output just the country name"
+prompt = f"Which country would someone be if he says: {transcribed_text}. Output just the country name"
 
-country = information_extractor.extract_information(text, prompt, temperature = 0)
+country = information_extractor.extract_information(transcribed_text, prompt, temperature = 0)
 
-print(country)
+# print(country)
 
 # Create an instance of the SparqlQuery class
 sparql_query = SparqlQuery("/home/jerin/robotics/Thesis/pedagogy_ontology_v2.rdf")
@@ -56,14 +60,16 @@ sparql_query = SparqlQuery("/home/jerin/robotics/Thesis/pedagogy_ontology_v2.rdf
 # Define the SPARQL query
 query = """
     PREFIX : <http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#>
-    SELECT ?greeting
+    SELECT ?greeting ?food
     WHERE {{
         ?greeting :hasCountry :{} .
         ?greeting :hasTimeOfDay :{} .
+        ?food :hasFood :{} .
     }}
-""".format(country, time)
+""".format(country, time, country)
 
-# Run the query and print the results
+# Run the query and print the combined results
 results = default_world.sparql(query)
 for row in results:
-    print(f"{(row[0].name)}, What is your favourite dish?")
+    print(f"{row[0].name}, What is your favourite dish? Do you like {row[1].name}?")
+
