@@ -2,15 +2,8 @@ from translate_class import SpeechToTextTranslator
 from openai_class import InformationExtractor
 from owlready2 import get_ontology, default_world
 from datetime import datetime
-
-now = datetime.now()
-hour = now.hour
-
-# Check if it's morning or evening
-if 6 <= hour < 18:
-    time = "Morning"
-else:
-    time = "Evening"
+import socket
+import time as t
 
 class SparqlQuery:
     def __init__(self, ontology_path):
@@ -21,13 +14,47 @@ class SparqlQuery:
         for row in results:
             print(row[0].name)
 
-print("Once upon a time, in a distant galaxy, there was a friendly robot named Nao. ")
-print("Nao came from a faraway alien planet called Zog, where robots lived in harmony with nature.")
-print("One day, Nao landed on Earth and met a group of curious children. ")
-print("The children were amazed to see an alien robot standing in front of them.")
-print('Nao: "Hello, young adventurers! I come from a planet called Zog. Where do you come from?"')
+client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+client_socket.connect(('localhost', 12345))
+
+now = datetime.now()
+hour = now.hour
+
+# Check if it's morning or evening
+if 6 <= hour < 18:
+    time = "Morning"
+else:
+    time = "Evening"
+
+def send_nao(Nao_text, language_code):
+    if language_code == "en-US":
+        language_code = 'English'
+    elif language_code == "it-IT":
+        language_code = 'Italian'
+    elif language_code == "de-DE":
+        language_code = 'German'
+
+    message = f"{Nao_text}|{language_code}"
+
+    client_socket.sendall(message.encode())
+    data = client_socket.recv(1024)
+    print(data)
+    return(data)
+
+
+text = "Hello, my name is Nao. Where do you come from?"
+language_code = "en-US"
+
+receipt1 = send_nao(text, language_code)
+
+# print("Nao came from a faraway alien planet called Zog, where robots lived in harmony with nature.")
+# print("One day, Nao landed on Earth and met a group of curious children. ")
+# print("The children were amazed to see an alien robot standing in front of them.")
+# print('Nao: "Hello, young adventurers! I come from a planet called Zog. Where do you come from?"')
 
 # Set the project ID, list of languages, and path to the audio file
+# if receipt1 == "b'received'"
+
 project_id = "decent-digit-395614"
 language_codes = ["en-US", "de-DE", "it-IT"]
 audio_file = "output.wav"
@@ -76,5 +103,8 @@ for row in results:
 
 text = translator.translate_text(og_language, ontology_text)
 
-print(f"Translated text: {text}")
+# print(f"Translated text: {text}")
+send_nao(text, og_language)
 
+
+client_socket.close()
