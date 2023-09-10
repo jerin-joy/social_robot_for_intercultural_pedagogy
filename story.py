@@ -99,7 +99,9 @@ query = """
 # Run the query and print the combined results
 results = default_world.sparql(query)
 for row in results:
-    ontology_text = f"{row[0].name}, What is your favourite dish? Do you like {row[1].name}?"
+    greeting = row[0].name.replace('_', ' ')
+    ontology_text = f"{greeting}, What is your favourite dish? Do you like {row[1].name}?"
+
 
 text = translator.translate_text(og_language, ontology_text)
 
