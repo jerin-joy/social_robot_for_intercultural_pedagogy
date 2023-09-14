@@ -1,5 +1,6 @@
 import paramiko
 from naoqi import ALProxy
+import socket
 
 # Your Nao's IP address and port
 nao_ip = "ricenao.local"
@@ -20,15 +21,15 @@ transport.connect(username='nao', password='ricelab')
 
 sftp = paramiko.SFTPClient.from_transport(transport)
 
-while True:
-    # Continuously upload and play audio files
-    sftp.put(local_file_path, file_path_on_robot)
-    
-    # Load a local audio file on the robot
-    file_id = audio_player.loadFile(file_path_on_robot)
 
-    # Play the loaded file
-    audio_player.play(file_id)
+# Continuously upload and play audio files
+sftp.put(local_file_path, file_path_on_robot)
+
+# Load a local audio file on the robot
+file_id = audio_player.loadFile(file_path_on_robot)
+
+# Play the loaded file
+audio_player.play(file_id)
 
 sftp.close()
 transport.close()

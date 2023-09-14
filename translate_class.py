@@ -4,6 +4,7 @@ from google.cloud import translate_v2, speech_v2, texttospeech_v1
 from typing import List, Tuple
 from google.cloud.speech_v2 import SpeechClient
 from google.cloud.speech_v2.types import cloud_speech
+from pydub import AudioSegment
 
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r"decent-digit-395614-9ef078739d62.json"
 
@@ -72,17 +73,24 @@ class SpeechToTextTranslator:
         
         return output['translatedText']
 
-    def synthesize_speech(self, target_language: str) -> None:
+    def synthesize_speech(self, target_language: str, text: str) -> None:
         speech_client = texttospeech_v1.TextToSpeechClient()
         
-        text = self.translate_text(target_language)
+        translated_text = self.translate_text(target_language, text)
         
-        synthesis_input = texttospeech_v1.SynthesisInput(text=text)
+        synthesis_input = texttospeech_v1.SynthesisInput(text=translated_text)
 
-        voice1 = texttospeech_v1.VoiceSelectionParams(
-            language_code=target_language,
-            ssml_gender=texttospeech_v1.SsmlVoiceGender.FEMALE
-        )
+        if target_language == 'en-US':
+            voice1 = texttospeech_v1.VoiceSelectionParams(
+                language_code=target_language,
+                ssml_gender=texttospeech_v1.SsmlVoiceGender.FEMALE,
+                name='en-US-Wavenet-F'  # This is an example of a female voice for US English
+            )
+        else:
+            voice1 = texttospeech_v1.VoiceSelectionParams(
+                language_code=target_language,
+                ssml_gender=texttospeech_v1.SsmlVoiceGender.FEMALE
+            )
 
         audio_config = texttospeech_v1.AudioConfig(
             audio_encoding=texttospeech_v1.AudioEncoding.MP3
@@ -96,6 +104,9 @@ class SpeechToTextTranslator:
 
         with open('audio.mp3', 'wb',) as output:
             output.write(response1.audio_content)
+        
+        sound = AudioSegment.from_mp3("audio.mp3")
+        sound.export("audio.wav", format="wav")
 
 
 # Set the project ID, list of languages, and path to the audio file

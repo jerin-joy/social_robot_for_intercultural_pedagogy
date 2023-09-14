@@ -4,6 +4,7 @@ from owlready2 import get_ontology, default_world
 from datetime import datetime
 import socket
 import time as t
+from pydub import AudioSegment
 
 class SparqlQuery:
     def __init__(self, ontology_path):
@@ -41,9 +42,18 @@ def send_nao(Nao_text, language_code):
     print(data)
     return(data)
 
+project_id = "decent-digit-395614"
+language_codes = ["en-US", "de-DE", "it-IT"]
+audio_file = "output.wav"
 
-text = "Hello, my name is Nao. Where do you come from?"
+translator = SpeechToTextTranslator(project_id, language_codes, audio_file)
+
+
+text = "I'm Nao. Where do you come from?"
 language_code = "en-US"
+translator.synthesize_speech(language_code, text)
+# sound = AudioSegment.from_mp3("audio.mp3")
+# sound.export("audio.wav", format="wav")
 
 receipt1 = send_nao(text, language_code)
 
@@ -55,11 +65,7 @@ receipt1 = send_nao(text, language_code)
 # Set the project ID, list of languages, and path to the audio file
 # if receipt1 == "b'received'"
 
-project_id = "decent-digit-395614"
-language_codes = ["en-US", "de-DE", "it-IT"]
-audio_file = "output.wav"
 
-translator = SpeechToTextTranslator(project_id, language_codes, audio_file)
 
 translator.record(audio_file)
 
@@ -104,6 +110,7 @@ for row in results:
 
 
 text = translator.translate_text(og_language, ontology_text)
+translator.synthesize_speech(og_language, text)
 
 # print(f"Translated text: {text}")
 send_nao(text, og_language)
