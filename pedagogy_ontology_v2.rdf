@@ -67,6 +67,15 @@
     
 
 
+    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#isPopularIn -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#isPopularIn">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Sport"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Country"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -222,6 +231,14 @@
     
 
 
+    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#FrenchSport -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#FrenchSport">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Sport"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#GermanCuisine -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#GermanCuisine">
@@ -234,6 +251,14 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#GermanGreeting">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Greeting"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#GermanSport -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#GermanSport">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Sport"/>
     </owl:Class>
     
 
@@ -280,6 +305,14 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#ItalianGreeting">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Greeting"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#ItalianSport -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#ItalianSport">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Sport"/>
     </owl:Class>
     
 
@@ -532,6 +565,14 @@
     
 
 
+    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Sport -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Sport">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Culture"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#SteakTartare -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#SteakTartare">
@@ -679,12 +720,11 @@
     
 
 
-    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Bonsoir -->
+    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Brotchen -->
 
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Bonsoir">
-        <rdf:type rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#FrenchGreeting"/>
-        <pedagogy-ontology-v2:hasCountry rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#France"/>
-        <pedagogy-ontology-v2:hasTimeOfDay rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Evening"/>
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Brotchen">
+        <rdf:type rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#GermanCuisine"/>
+        <pedagogy-ontology-v2:hasFood rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Germany"/>
     </owl:NamedIndividual>
     
 
@@ -709,6 +749,15 @@
     
 
 
+    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Calcio -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Calcio">
+        <rdf:type rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#ItalianSport"/>
+        <pedagogy-ontology-v2:isPopularIn rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Italy"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Ciao -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Ciao">
@@ -728,10 +777,36 @@
     
 
 
+    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Cuisine -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Cuisine">
+        <rdf:type rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Cuisine"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Day -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Day">
         <rdf:type rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#TimeOfDay"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Doner -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Doner">
+        <rdf:type rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#GermanCuisine"/>
+        <pedagogy-ontology-v2:hasFood rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Germany"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Eishockey -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Eishockey">
+        <rdf:type rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#GermanSport"/>
+        <pedagogy-ontology-v2:isPopularIn rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Germany"/>
     </owl:NamedIndividual>
     
 
@@ -752,11 +827,29 @@
     
 
 
+    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Formel_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Formel_1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#GermanSport"/>
+        <pedagogy-ontology-v2:isPopularIn rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Germany"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#France -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#France">
         <rdf:type rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Country"/>
         <pedagogy-ontology-v2:hasContinent rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Europe"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Fußball -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Fußball">
+        <rdf:type rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#GermanSport"/>
+        <pedagogy-ontology-v2:isPopularIn rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Germany"/>
     </owl:NamedIndividual>
     
 
@@ -891,6 +984,61 @@
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Schnitzel">
         <rdf:type rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#GermanCuisine"/>
         <pedagogy-ontology-v2:hasFood rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Germany"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Tennis -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Tennis">
+        <rdf:type rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#FrenchSport"/>
+        <pedagogy-ontology-v2:isPopularIn rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#France"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#bonsoir_quel_est_ton_plat_préféré -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#bonsoir_quel_est_ton_plat_préféré">
+        <rdf:type rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#FrenchGreeting"/>
+        <pedagogy-ontology-v2:hasCountry rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#France"/>
+        <pedagogy-ontology-v2:hasTimeOfDay rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Evening"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#football -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#football">
+        <rdf:type rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#FrenchSport"/>
+        <pedagogy-ontology-v2:isPopularIn rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#France"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#pallacanestro -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#pallacanestro">
+        <rdf:type rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#ItalianSport"/>
+        <pedagogy-ontology-v2:isPopularIn rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Italy"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#pallavolo -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#pallavolo">
+        <rdf:type rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#ItalianSport"/>
+        <pedagogy-ontology-v2:isPopularIn rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Italy"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#vélo -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#vélo">
+        <rdf:type rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#FrenchSport"/>
+        <pedagogy-ontology-v2:isPopularIn rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#France"/>
     </owl:NamedIndividual>
     
 
