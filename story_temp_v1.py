@@ -6,6 +6,10 @@ import socket
 import time as t
 from pydub import AudioSegment
 from questions import SparqlQueryQuestions
+import os
+import sys
+
+sys.stderr = open(os.devnull, 'w')
 
 class SparqlQuery:
     def __init__(self, ontology_path):
@@ -27,6 +31,14 @@ if 6 <= hour < 18:
     time = "Morning"
 else:
     time = "Evening"
+
+def translate_and_synthesize(og_language, ontology_text, text):
+    print(f"og_language: {og_language}, ontology_text: {ontology_text}, text: {text}")
+    text = translator.translate_text(og_language, ontology_text)
+    translator.synthesize_speech(og_language, text)
+    print(f"og_language: {og_language}, ontology_text: {ontology_text}, text: {text}")
+
+    send_nao(text, og_language)
 
 def send_nao(Nao_text, language_code):
     if language_code == "en-US":
@@ -78,11 +90,40 @@ ontology_text = sparql_query.run_query(country, time)
 print(ontology_text)
 
 
-text = translator.translate_text(og_language, ontology_text)
-translator.synthesize_speech(og_language, text)
+# text = translator.translate_text(og_language, ontology_text)
+# translator.synthesize_speech(og_language, text)
+# send_nao(text, og_language)
 
-# print(f"Translated text: {text}")
-send_nao(text, og_language)
+translate_and_synthesize(og_language, ontology_text, text)
+
+text = "What is your favourite animal?"
+
+translate_and_synthesize(og_language, ontology_text, text)
+
+translator.record(audio_file)
+
+transcribed_text, og_language = translator.transcribe_multiple_languages_v2()
+
+
+information_extractor = InformationExtractor()
+
+prompt = f"Translate and display only the animal name(singular) without any other sentences in this sentence in English: {transcribed_text}"
+
+animal = information_extractor.extract_information(transcribed_text, prompt, temperature = 0)
+
+print(animal)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 client_socket.close()
