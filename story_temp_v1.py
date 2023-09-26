@@ -6,10 +6,6 @@ import socket
 import time as t
 from pydub import AudioSegment
 from questions import SparqlQueryQuestions
-import os
-import sys
-
-sys.stderr = open(os.devnull, 'w')
 
 class SparqlQuery:
     def __init__(self, ontology_path):
@@ -33,10 +29,10 @@ else:
     time = "Evening"
 
 def translate_and_synthesize(og_language, ontology_text, text):
-    print(f"og_language: {og_language}, ontology_text: {ontology_text}, text: {text}")
+    # print(f"og_language: {og_language}, ontology_text: {ontology_text}, text: {text}")
     text = translator.translate_text(og_language, ontology_text)
     translator.synthesize_speech(og_language, text)
-    print(f"og_language: {og_language}, ontology_text: {ontology_text}, text: {text}")
+    # print(f"og_language: {og_language}, ontology_text: {ontology_text}, text: {text}")
 
     send_nao(text, og_language)
 
@@ -85,33 +81,43 @@ country = information_extractor.extract_information(transcribed_text, prompt, te
 sparql_query = SparqlQueryQuestions("/home/jerin/robotics/Thesis/pedagogy_ontology_v2.rdf")
 
 # Run the query and get the combined results
-ontology_text = sparql_query.run_query(country, time)
+ontology_text, random_food = sparql_query.run_query(country, time)
 
 print(ontology_text)
 
-
-# text = translator.translate_text(og_language, ontology_text)
-# translator.synthesize_speech(og_language, text)
-# send_nao(text, og_language)
-
 translate_and_synthesize(og_language, ontology_text, text)
 
-text = "What is your favourite animal?"
+# text = "What is your favourite animal?"
 
-translate_and_synthesize(og_language, ontology_text, text)
+# ontology_text = text
 
-translator.record(audio_file)
+# translate_and_synthesize(og_language, ontology_text, text)
 
-transcribed_text, og_language = translator.transcribe_multiple_languages_v2()
+# translator.record(audio_file)
+
+# transcribed_text, og_language = translator.transcribe_multiple_languages_v2()
 
 
-information_extractor = InformationExtractor()
+# information_extractor = InformationExtractor()
 
-prompt = f"Translate and display only the animal name(singular) without any other sentences in this sentence in English: {transcribed_text}"
+# prompt = f"Translate and display only the animal name(singular) without any other sentences in this sentence in English: {transcribed_text}"
 
-animal = information_extractor.extract_information(transcribed_text, prompt, temperature = 0)
+# animal = information_extractor.extract_information(transcribed_text, prompt, temperature = 0)
 
-print(animal)
+# print(animal)
+
+# Run the query and get the combined results
+ontology_text, random_food = sparql_query.run_query(country, time)
+
+# Get the ingredients of the random food
+ingredients = sparql_query.get_ingredients(random_food)
+
+# Generate the question
+question = sparql_query.generate_question(random_food, ingredients, country)
+
+print(question)
+
+
 
 
 

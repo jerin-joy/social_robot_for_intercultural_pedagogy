@@ -8,37 +8,18 @@ class SparqlQueryQuestions:
         self.ontology = get_ontology(ontology_path).load()
 
     def run_query(self, country, time):
-        # List of query types and their corresponding processing methods
-        query_types = ["greeting_and_food", "sport"]
+        query = """
+            PREFIX : <http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#>
+            SELECT ?greeting ?food
+            WHERE {{
+                ?greeting :hasCountry :{} .
+                ?greeting :hasTimeOfDay :{} .
+                ?food :hasFood :{} .
+            }}
+        """.format(country, time, country)
         
-        # Select a random query type
-        query_type = random.choice(query_types)
-        
-        if query_type == "greeting_and_food":
-            query = """
-                PREFIX : <http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#>
-                SELECT ?greeting ?food
-                WHERE {{
-                    ?greeting :hasCountry :{} .
-                    ?greeting :hasTimeOfDay :{} .
-                    ?food :hasFood :{} .
-                }}
-            """.format(country, time, country)
-            results = default_world.sparql(query)
-            return self.process_greeting_and_food(results)
-        
-        elif query_type == "sport":
-            query = """
-                PREFIX : <http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#>
-                SELECT ?greeting ?sport
-                WHERE {{
-                    ?greeting :hasCountry :{} .
-                    ?greeting :hasTimeOfDay :{} .
-                    ?sport :isPopularIn :{} .
-                }}
-            """.format(country, time, country)
-            results = default_world.sparql(query)
-            return self.process_sport(results)
+        results = default_world.sparql(query)
+        return self.process_greeting_and_food(results)
 
     def process_greeting_and_food(self, results):
         # Convert the results to a list
@@ -53,21 +34,33 @@ class SparqlQueryQuestions:
         # Select a random food item
         random_food = random.choice(foods)
 
+        # List of question formats
+        question_formats = [
+            "{greeting}! Today, we're going on a culinary journey. Our first stop is {random_food}, a beloved dish in this region.",
+            "{greeting}, let's dive into the world of gastronomy. Have you ever tried {random_food}? It's a dish that many people enjoy here.",
+            "{greeting}, did you know that {random_food} is a popular dish in this part of the world? It's quite fascinating!",
+            "{greeting}, as we explore different cultures, let's not forget about their unique cuisines. For instance, {random_food} is a dish that's well-loved here."
+        ]
+
+
+        # Select a random question format
+        question_format = random.choice(question_formats)
+
         # Generate the text
-        return f"{greeting}, What is your favourite dish? Do you like {random_food}?"
+        return question_format.format(greeting=greeting, random_food=random_food), random_food
+    
+    def get_ingredients(self, food):
+        query = f"""
+            PREFIX : <http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#>
+            SELECT ?ingredient
+            WHERE {{
+                :{food} :hasIngredient ?ingredient .
+            }}
+        """
+        results = default_world.sparql(query)
+        ingredients = [row[0].name.replace('_', ' ') for row in results]
+        return ', '.join(ingredients)
 
-    def process_sport(self, results):
-        # Convert the results to a list
-        results_list = list(results)
-
-        # Get the greeting from the first result
-        greeting = results_list[0][0].name.replace('_', ' ')
-
-        # Get all sports from the results
-        sports = [row[1].name for row in results_list]
-
-        # Select a random sport
-        random_sport = random.choice(sports)
-
-        # Generate the question
-        return f"{greeting}, Nice to meet you. What sports do you like? Do you like {random_sport}?"
+    def generate_question(self, food, ingredients, country):
+        question = f"That’s a lovely story! Did you know that {food} is traditionally made with {ingredients} in {country}? Have you ever helped make it at home?"
+        return question
