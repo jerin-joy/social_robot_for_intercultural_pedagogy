@@ -1,10 +1,12 @@
 import os
+import html
 import speech_recognition as sr
 from google.cloud import translate_v2, speech_v2, texttospeech_v1
 from typing import List, Tuple
 from google.cloud.speech_v2 import SpeechClient
 from google.cloud.speech_v2.types import cloud_speech
 from pydub import AudioSegment
+
 
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r"decent-digit-395614-9ef078739d62.json"
 
@@ -71,7 +73,9 @@ class SpeechToTextTranslator:
         
         output = translate_client.translate(ontology_text, target_language=target_language)
         
-        return output['translatedText']
+        translated_text = html.unescape(output['translatedText'])
+    
+        return translated_text
 
     def synthesize_speech(self, target_language: str, text: str) -> None:
         speech_client = texttospeech_v1.TextToSpeechClient()
@@ -109,13 +113,4 @@ class SpeechToTextTranslator:
         sound.export("audio.wav", format="wav")
 
 
-# Set the project ID, list of languages, and path to the audio file
-# project_id = "top-amplifier-386514"
-# language_codes = ["en-US", "de-DE", "it-IT"]
-# audio_file = "output.wav"
 
-# translator = SpeechToTextTranslator(project_id, language_codes, audio_file)
-
-# target_language = input("Specify the code for the target language: ")
-
-# translator.synthesize_speech(target_language)

@@ -17,7 +17,7 @@ class SparqlQueryQuestions:
                 ?food :hasFood :{} .
             }}
         """.format(country, time, country)
-        
+
         results = default_world.sparql(query)
         return self.process_greeting_and_food(results)
 
@@ -62,5 +62,19 @@ class SparqlQueryQuestions:
         return ', '.join(ingredients)
 
     def generate_question(self, food, ingredients, country):
-        question = f"That’s a lovely story! Did you know that {food} is traditionally made with {ingredients} in {country}? Have you ever helped make it at home?"
+        question = f"Did you know that {food} is traditionally made with {ingredients} in {country}? Have you ever helped make it at home?"
         return question
+    
+    def get_description(self, food):
+        query = f"""
+            PREFIX : <http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#>
+            SELECT ?description
+            WHERE {{
+                :{food} :hasDescription ?description .
+            }}
+        """
+        results = default_world.sparql(query)
+        description = [row[0].name.replace('_', ' ') for row in results]
+        return ', '.join(description)
+
+
