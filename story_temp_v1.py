@@ -113,9 +113,14 @@ ontology_text, random_food = sparql_query.run_query(country, time)
 ingredients = sparql_query.get_ingredients(random_food)
 
 # Generate the question
-question = sparql_query.generate_question(random_food, ingredients, country)
+text = sparql_query.generate_question(random_food, ingredients, country)
 
-print(question)
+print(text)
+ontology_text = text
+
+translate_and_synthesize(og_language, ontology_text, text)
+
+translator.record(audio_file)
 
 
 

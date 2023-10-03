@@ -57,15 +57,6 @@ translator.synthesize_speech(language_code, text)
 
 receipt1 = send_nao(text, language_code)
 
-# print("Nao came from a faraway alien planet called Zog, where robots lived in harmony with nature.")
-# print("One day, Nao landed on Earth and met a group of curious children. ")
-# print("The children were amazed to see an alien robot standing in front of them.")
-# print('Nao: "Hello, young adventurers! I come from a planet called Zog. Where do you come from?"')
-
-# Set the project ID, list of languages, and path to the audio file
-# if receipt1 == "b'received'"
-
-
 
 translator.record(audio_file)
 
