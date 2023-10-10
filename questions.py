@@ -76,5 +76,17 @@ class SparqlQueryQuestions:
         results = default_world.sparql(query)
         description = [row[0].name.replace('_', ' ') for row in results]
         return ', '.join(description)
+    
+    def get_phrases(self, language):
+        query = f"""
+            PREFIX : <http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#>
+            SELECT ?sentence ?translation
+            WHERE {{
+                ?sentence :has{language}Translation ?translation .
+            }}
+        """
+        results = default_world.sparql(query)
+        phrases = [(row[0].name.replace('_', ' '), row[1].name.replace('_', ' ')) for row in results]
+        return phrases
 
 

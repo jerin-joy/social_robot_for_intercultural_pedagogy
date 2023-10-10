@@ -177,55 +177,15 @@
     
 
 
-    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#BoeufBourguignon -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#BoeufBourguignon">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#FrenchCuisine"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Brezel -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Brezel">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#GermanCuisine"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#ConfitduCanard -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#ConfitduCanard">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#FrenchCuisine"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Continent -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Continent"/>
     
 
 
-    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#CoqauVin -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#CoqauVin">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#FrenchCuisine"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Country -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Country"/>
-    
-
-
-    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Crêpes -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Crêpes">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#FrenchCuisine"/>
-    </owl:Class>
     
 
 
@@ -247,14 +207,6 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#DishDescription">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Culture"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Eintopf -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Eintopf">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#GermanCuisine"/>
     </owl:Class>
     
 
@@ -351,14 +303,6 @@
     
 
 
-    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Gnocchi -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Gnocchi">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#ItalianCuisine"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Greeting -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Greeting">
@@ -421,14 +365,6 @@
     
 
 
-    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Iyan -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Iyan">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#NigerianCuisine"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Japan -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Japan">
@@ -459,41 +395,9 @@
     
 
 
-    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#JollofRice -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#JollofRice">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#NigerianCuisine"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Kartoffelpuffer -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Kartoffelpuffer">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#GermanCuisine"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Käsespätzle -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Käsespätzle">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#GermanCuisine"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Language -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Language"/>
-    
-
-
-    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Lasagna -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Lasagna">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#ItalianCuisine"/>
-    </owl:Class>
     
 
 
@@ -527,130 +431,10 @@
     
 
 
-    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#OgbonoSoup -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#OgbonoSoup">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#NigerianCuisine"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Onigiri -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Onigiri">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#JapaneseCuisine"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Pasta -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Pasta">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#ItalianCuisine"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#PepperSoup -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#PepperSoup">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#NigerianCuisine"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Pizza -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Pizza">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#ItalianCuisine"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#PizzaIngredients -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#PizzaIngredients">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Ingredients"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Puff-Puff -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Puff-Puff">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#NigerianCuisine"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#QuicheLorraine -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#QuicheLorraine">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#FrenchCuisine"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Ratatouille -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Ratatouille">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#FrenchCuisine"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Ravioli -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Ravioli">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#ItalianCuisine"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Ribollita -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Ribollita">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#ItalianCuisine"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Risotto -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Risotto">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#ItalianCuisine"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Rouladen -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Rouladen">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#GermanCuisine"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Sashimi -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Sashimi">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#JapaneseCuisine"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Sauerbraten -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Sauerbraten">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#GermanCuisine"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Schnitzel -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Schnitzel">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#GermanCuisine"/>
     </owl:Class>
     
 
@@ -663,58 +447,10 @@
     
 
 
-    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#SobaAndUdon -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#SobaAndUdon">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#JapaneseCuisine"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Sport -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Sport">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Culture"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#SteakTartare -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#SteakTartare">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#FrenchCuisine"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Sukiyaki -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Sukiyaki">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#JapaneseCuisine"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Sushi -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Sushi">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#JapaneseCuisine"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Suya -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Suya">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#NigerianCuisine"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Tempura -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Tempura">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#JapaneseCuisine"/>
     </owl:Class>
     
 
@@ -729,54 +465,6 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Translation">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Language"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Unagi -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Unagi">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#JapaneseCuisine"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Wurst -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Wurst">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#GermanCuisine"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Yakitori -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Yakitori">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#JapaneseCuisine"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Àkàrà -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Àkàrà">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#NigerianCuisine"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Àmàlà -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Àmàlà">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#NigerianCuisine"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Soupeal&apos;ognion -->
-
-    <owl:Class rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Soupeal&apos;ognion">
-        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#FrenchCuisine"/>
     </owl:Class>
     
 
@@ -824,6 +512,14 @@
     
 
 
+    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Beef -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Beef">
+        <rdf:type rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Ingredients"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Bitte -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Bitte">
@@ -842,11 +538,44 @@
     
 
 
+    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Bratwurst -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Bratwurst">
+        <rdf:type rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#GermanCuisine"/>
+        <pedagogy-ontology-v2:hasDescription rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#german_sausage_made_from_pork,_beef,_or_veal"/>
+        <pedagogy-ontology-v2:hasFood rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Germany"/>
+        <pedagogy-ontology-v2:hasIngredient rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Beef"/>
+        <pedagogy-ontology-v2:hasIngredient rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Pork"/>
+        <pedagogy-ontology-v2:hasIngredient rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Veal"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Bread -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Bread">
+        <rdf:type rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Ingredients"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Bread_Crumps -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Bread_Crumps">
+        <rdf:type rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Ingredients"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Brotchen -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Brotchen">
         <rdf:type rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#GermanCuisine"/>
+        <pedagogy-ontology-v2:hasDescription rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#crusty_bread_with_a_soft_inside."/>
         <pedagogy-ontology-v2:hasFood rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Germany"/>
+        <pedagogy-ontology-v2:hasIngredient rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Flour"/>
+        <pedagogy-ontology-v2:hasIngredient rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Sugar"/>
+        <pedagogy-ontology-v2:hasIngredient rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Yeast"/>
     </owl:NamedIndividual>
     
 
@@ -884,6 +613,14 @@
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Calcio">
         <rdf:type rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#ItalianSport"/>
         <pedagogy-ontology-v2:isPopularIn rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Italy"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Chicken -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Chicken">
+        <rdf:type rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Ingredients"/>
     </owl:NamedIndividual>
     
 
@@ -935,7 +672,11 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Doner">
         <rdf:type rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#GermanCuisine"/>
+        <pedagogy-ontology-v2:hasDescription rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#dish_of_meat_cooked_on_a_vertical_rotisserie."/>
         <pedagogy-ontology-v2:hasFood rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Germany"/>
+        <pedagogy-ontology-v2:hasIngredient rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Bread"/>
+        <pedagogy-ontology-v2:hasIngredient rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Ground_beef"/>
+        <pedagogy-ontology-v2:hasIngredient rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Vegetables"/>
     </owl:NamedIndividual>
     
 
@@ -1240,6 +981,14 @@
     
 
 
+    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Pork -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Pork">
+        <rdf:type rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Ingredients"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Salut -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Salut">
@@ -1254,7 +1003,11 @@
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Schnitzel">
         <rdf:type rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#GermanCuisine"/>
+        <pedagogy-ontology-v2:hasDescription rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#thin_slice_of_meat,_breaded_and_fried"/>
         <pedagogy-ontology-v2:hasFood rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Germany"/>
+        <pedagogy-ontology-v2:hasIngredient rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Bread_Crumps"/>
+        <pedagogy-ontology-v2:hasIngredient rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Chicken"/>
+        <pedagogy-ontology-v2:hasIngredient rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Flour"/>
     </owl:NamedIndividual>
     
 
@@ -1294,6 +1047,30 @@
     
 
 
+    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Veal -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Veal">
+        <rdf:type rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Ingredients"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Vegetables -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Vegetables">
+        <rdf:type rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Ingredients"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Yeast -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Yeast">
+        <rdf:type rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Ingredients"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#baked_noodles_with_cheese_and_sauce -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#baked_noodles_with_cheese_and_sauce">
@@ -1323,6 +1100,22 @@
     <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#creamy_frozen_dessert_with_fruit_flavours -->
 
     <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#creamy_frozen_dessert_with_fruit_flavours">
+        <rdf:type rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#DishDescription"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#crusty_bread_with_a_soft_inside. -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#crusty_bread_with_a_soft_inside.">
+        <rdf:type rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#DishDescription"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#dish_of_meat_cooked_on_a_vertical_rotisserie. -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#dish_of_meat_cooked_on_a_vertical_rotisserie.">
         <rdf:type rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#DishDescription"/>
     </owl:NamedIndividual>
     
@@ -1380,6 +1173,22 @@
     
 
 
+    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#german_sausage_made_from_pork,_beef,_or_veal -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#german_sausage_made_from_pork,_beef,_or_veal">
+        <rdf:type rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#DishDescription"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#thin_slice_of_meat,_breaded_and_fried -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#thin_slice_of_meat,_breaded_and_fried">
+        <rdf:type rdf:resource="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#DishDescription"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -1396,32 +1205,6 @@
             <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Asia"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Australia"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Europe"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#BoeufBourguignon"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#ConfitduCanard"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#CoqauVin"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Crêpes"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#QuicheLorraine"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Ratatouille"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#SteakTartare"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Soupeal&apos;ognion"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Brezel"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Eintopf"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Kartoffelpuffer"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Käsespätzle"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Rouladen"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Sauerbraten"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Schnitzel"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Wurst"/>
         </owl:members>
     </rdf:Description>
     <rdf:Description>
@@ -1452,44 +1235,6 @@
             <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#ItalianGreeting"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#JapaneseGreeting"/>
             <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#NigerianGreeting"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Gnocchi"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Lasagna"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Pasta"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Pizza"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Ravioli"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Ribollita"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Risotto"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Iyan"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#JollofRice"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#OgbonoSoup"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#PepperSoup"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Puff-Puff"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Suya"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Àkàrà"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Àmàlà"/>
-        </owl:members>
-    </rdf:Description>
-    <rdf:Description>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Onigiri"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Sashimi"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#SobaAndUdon"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Sukiyaki"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Sushi"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Tempura"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Unagi"/>
-            <rdf:Description rdf:about="http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#Yakitori"/>
         </owl:members>
     </rdf:Description>
 </rdf:RDF>

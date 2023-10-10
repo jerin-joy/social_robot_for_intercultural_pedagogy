@@ -1,4 +1,5 @@
 from openai_key import api_key
+from translate_class import SpeechToTextTranslator
 import openai
 
 class InformationExtractor:
@@ -19,6 +20,19 @@ class InformationExtractor:
         )
         information = response['choices'][0]['message']['content']
         return information
+
+    def handle_translation_request(self, text: str, translator: SpeechToTextTranslator):
+        # Use OpenAI API to check if text is a translation request
+        prompt = f"The user said: '{text}'. If the user is asking for a translation, return the target language code. Otherwise, return 'Not a translation request'."
+        target_language = self.extract_information(text, prompt)
+
+        if target_language != 'Not a translation request':
+            # If it's a translation request, call translate_last_sentence
+            translated_sentence = translator.translate_last_sentence(target_language)
+            return translated_sentence
+        else:
+            # If it's not a translation request, return None
+            return None
 
 # extractor = InformationExtractor()
 # text = input("Enter the text: ")
