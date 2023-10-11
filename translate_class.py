@@ -8,6 +8,7 @@ from google.cloud.speech_v2.types import cloud_speech
 from pydub import AudioSegment
 
 
+
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r"decent-digit-395614-9ef078739d62.json"
 
 class SpeechToTextTranslator:
@@ -15,6 +16,7 @@ class SpeechToTextTranslator:
         self.project_id = project_id
         self.language_codes = language_codes
         self.audio_file = audio_file
+        self.last_spoken_sentence = None
 
     def record(self, audio_file: str) -> None:
         r = sr.Recognizer()
@@ -62,8 +64,18 @@ class SpeechToTextTranslator:
             # print(f"Transcript: {result.alternatives[0].transcript}")
             pass
 
-        # return result.alternatives[0].transcript, response
-        return result.alternatives[0].transcript, result.language_code
+        
+        # Check if it's a translation request
+        translated_sentence = self.information_extractor.handle_translation_request(result.alternatives[0].transcript, self)
+
+        if translated_sentence is not None:
+            # If it's a translation request, use the translated sentence in your robot's response
+            print(translated_sentence)
+        else:
+            # If it's not a translation request, return the transcribed text and language code as usual
+            return result.alternatives[0].transcript, result.language_code
+
+        # return result.alternatives[0].transcript, result.language_code
 
     def translate_text(self, target_language: str, ontology_text: str) -> str:
         translate_client = translate_v2.Client()
@@ -76,8 +88,18 @@ class SpeechToTextTranslator:
         translated_text = html.unescape(output['translatedText'])
     
         return translated_text
+    
+    def translate_last_sentence(self, target_language):
+        if self.last_spoken_sentence is None:
+            print("I haven't spoken anything yet.")
+        else:
+            translated_text = self.translate_text(target_language, self.last_spoken_sentence)
+            return translated_text
+
 
     def synthesize_speech(self, target_language: str, text: str) -> None:
+
+        self.last_spoken_sentence = text
         speech_client = texttospeech_v1.TextToSpeechClient()
         
         translated_text = self.translate_text(target_language, text)

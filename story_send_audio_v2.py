@@ -1,4 +1,5 @@
 from translate_class import SpeechToTextTranslator
+# from translation_handler import TranslationHandler
 from openai_class import InformationExtractor
 from owlready2 import get_ontology, default_world
 from datetime import datetime
@@ -22,6 +23,17 @@ def send_nao(Nao_text, language_code):
     data = client_socket.recv(1024)
     print(data)
     return(data)
+
+# def handle_user_response(translation_handler, transcribed_text):
+#     # Check if it's a translation request
+#     translated_sentence = translation_handler.handle_translation_request(transcribed_text)
+
+#     if translated_sentence is not None:
+#         # If it's a translation request, use the translated sentence in your robot's response
+#         print(translated_sentence)
+#     else:
+#         return None
+
 
 def translate_and_synthesize(og_language, ontology_text):
     text = translator.translate_text(og_language, ontology_text)
@@ -51,12 +63,28 @@ def get_country(transcribed_text):
     prompt = f"Which country would someone be if he says: {transcribed_text}. Output just the country name"
     return information_extractor.extract_information(transcribed_text, prompt, temperature=0)
 
+def user_translation(transcribed_text):
+    prompt = f"Robot asked child: 'What would you like to translate and to which language do you want to translate it?'. The child replied: {transcribed_text}. Give the response without asking follow-up questions."
+    response = information_extractor.extract_information(transcribed_text, prompt, temperature=0)
+    print(response)
+    translate_and_synthesize(og_language, ontology_text=response)
+
+def translation_request(transcribed_text, text_to_be_translated):
+    prompt = f"Check whether this is a translation request: {transcribed_text}. If yes, give the translation without asking follow-up questions. If No, return no. Also if the translation request is to translate the previous question {text_to_be_translated}, provide it's translation"
+    response = information_extractor.extract_information(transcribed_text, prompt, temperature=0)
+    print(response)
+    if response.lower() == "no":
+        return None
+    translate_and_synthesize(og_language, ontology_text=response)
+    
+
 project_id = "decent-digit-395614"
 language_codes = ["en-US", "de-DE", "it-IT"]
 audio_file = "output.wav"
 
-translator = SpeechToTextTranslator(project_id, language_codes, audio_file)
+# translation_handler = TranslationHandler(project_id, language_codes, audio_file)
 information_extractor = InformationExtractor()
+translator = SpeechToTextTranslator(project_id, language_codes, audio_file)
 sparql_query = SparqlQueryQuestions("/home/jerin/robotics/Thesis/pedagogy_ontology_v2.rdf")
 
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -73,6 +101,8 @@ receipt1 = send_nao(text, language_code)
 
 transcribed_text = input("Type your response: ")
 og_language = input("Write your language code: ")
+translation_request(transcribed_text, text_to_be_translated=text)
+# handle_user_response(translation_handler, transcribed_text)
 
 country = get_country(transcribed_text)
 
@@ -87,12 +117,16 @@ translate_and_synthesize(og_language, ontology_text=text)
 
 transcribed_text = input("Type your response: ")
 og_language = input("Write your language code: ")
+translation_request(transcribed_text, text_to_be_translated=text)
 get_response_make_dish(transcribed_text)
 
-translate_and_synthesize(og_language, "Now, let's explore another culture. Where would you like to go next?")
+text = "Now, let's explore another culture. Where would you like to go next?"
+print(text)
+translate_and_synthesize(og_language, ontology_text=text)
 
 transcribed_text = input("Type your response: ")
 og_language = input("Write your language code: ")
+translation_request(transcribed_text, text_to_be_translated=text)
 
 country = get_country(transcribed_text)
 if country == "Germany":
@@ -109,6 +143,7 @@ translate_and_synthesize(og_language, ontology_text=text)
 
 transcribed_text = input("Type your response: ")
 og_language = input("Write your language code: ")
+translation_request(transcribed_text, text_to_be_translated=text)
 get_response_try_dish(transcribed_text)
 
 question =f"Apart from its cuisine, {country} is also known for its language. Would you like to learn a few simple phrases in {native_language}?"
@@ -117,6 +152,7 @@ translate_and_synthesize(og_language, ontology_text=question)
 
 transcribed_text = input("Type your response: ")
 og_language = input("Write your language code: ")
+translation_request(transcribed_text, text_to_be_translated=text)
 response = get_response_yes_or_no(transcribed_text)
 print(response)
 
@@ -137,6 +173,7 @@ if response == 'yes':
 
     transcribed_text = input("Type your response: ")
     og_language = input("Write your language code: ")
+    translation_request(transcribed_text,text_to_be_translated=question)
     response = get_response_yes_or_no(transcribed_text)
     print(response)
 
@@ -153,6 +190,31 @@ if response == 'yes':
     else:
         text = "Okay. Let's move on to another topic."
         translate_and_synthesize(og_language, ontology_text=text)
+
+else:
+    text = "Okay. Let's move on to another topic."
+    translate_and_synthesize(og_language, ontology_text=text)
+
+text = f"Would you like to translate something in {og_language} to any other language?"
+print(text)
+translate_and_synthesize(og_language, ontology_text=text)
+
+transcribed_text = input("Type your response: ")
+og_language = input("Write your language code: ")
+translation_request(transcribed_text, text_to_be_translated=text)
+response = get_response_yes_or_no(transcribed_text)
+print(response)
+
+if response == 'yes':
+    text = "What would you like to translate and to which language you want to translate it to?"
+    print(text)
+    translate_and_synthesize(og_language, ontology_text=text)
+    transcribed_text = input("Type your response: ")
+    og_language = input("Write your language code: ")
+    translation_request(transcribed_text, text_to_be_translated=text)
+
+    user_translation(transcribed_text)
+
 
 
 
