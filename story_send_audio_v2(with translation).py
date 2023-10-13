@@ -70,12 +70,14 @@ def user_translation(transcribed_text):
     translate_and_synthesize(og_language, ontology_text=response)
 
 def translation_request(transcribed_text, text_to_be_translated):
-    prompt = f"Check whether this is a translation request: {transcribed_text}. If yes, give the translation without asking follow-up questions. If No, return no. Also if the translation request is to translate the previous question {text_to_be_translated}, provide it's translation"
+    # prompt = f"Robot asked Child: '{text_to_be_translated}', Child replied: '{transcribed_text}'. If translation is requested on the child's reply, give the translation of the question/reply('it'/'question' might refer to what robot asked) without asking follow-up questions. If No translation is requested, return just NO (Nothing else and no explanation). "
+    prompt = f"Check if translation is explicitly requested in the following message: {transcribed_text}. If yes, give the translation without asking follow-up questions. If No, return just NO (Nothing else and no explanation). Does this reply ask to translate the previous question? If yes, return YES. If No, return No"
     response = information_extractor.extract_information(transcribed_text, prompt, temperature=0)
     print(response)
     if response.lower() == "no":
         return None
     translate_and_synthesize(og_language, ontology_text=response)
+    return True
     
 
 project_id = "decent-digit-395614"
@@ -93,22 +95,26 @@ client_socket.connect(('localhost', 12345))
 time = "Morning" if 6 <= datetime.now().hour < 18 else "Evening"
 
 
-text = "I'm Nao. Where do you come from?"
-language_code = "en-US"
-translator.synthesize_speech(language_code, text)
+while True:
+    text = "I'm Nao. Where do you come from?"
+    language_code = "en-US"
+    translator.synthesize_speech(language_code, text)
 
-receipt1 = send_nao(text, language_code)
+    receipt1 = send_nao(text, language_code)
 
-transcribed_text = input("Type your response: ")
-og_language = input("Write your language code: ")
-translation_request(transcribed_text, text_to_be_translated=text)
-# handle_user_response(translation_handler, transcribed_text)
+    transcribed_text = input("Type your response: ")
+    og_language = input("Write your language code: ")
+    translation_request_result = translation_request(transcribed_text, text_to_be_translated=text)
+    
+    # If the result of translation_request is None, it means the user's input is not a translation request.
+    if translation_request_result is None:
+        country = get_country(transcribed_text)
 
-country = get_country(transcribed_text)
+        ontology_text, random_food = sparql_query.run_query(country, time)
+        print(ontology_text)
+        translate_and_synthesize(og_language, ontology_text)
+        break  # Exit the loop if the user's input is not a translation request.
 
-ontology_text, random_food = sparql_query.run_query(country, time)
-print(ontology_text)
-translate_and_synthesize(og_language, ontology_text)
 
 ingredients = sparql_query.get_ingredients(random_food)
 text = sparql_query.generate_question(random_food, ingredients, country)

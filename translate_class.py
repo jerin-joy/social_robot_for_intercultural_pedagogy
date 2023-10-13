@@ -65,17 +65,17 @@ class SpeechToTextTranslator:
             pass
 
         
-        # Check if it's a translation request
-        translated_sentence = self.information_extractor.handle_translation_request(result.alternatives[0].transcript, self)
+        # # Check if it's a translation request
+        # translated_sentence = self.information_extractor.handle_translation_request(result.alternatives[0].transcript, self)
 
-        if translated_sentence is not None:
-            # If it's a translation request, use the translated sentence in your robot's response
-            print(translated_sentence)
-        else:
-            # If it's not a translation request, return the transcribed text and language code as usual
-            return result.alternatives[0].transcript, result.language_code
+        # if translated_sentence is not None:
+        #     # If it's a translation request, use the translated sentence in your robot's response
+        #     print(translated_sentence)
+        # else:
+        #     # If it's not a translation request, return the transcribed text and language code as usual
+        #     return result.alternatives[0].transcript, result.language_code
 
-        # return result.alternatives[0].transcript, result.language_code
+        return result.alternatives[0].transcript, result.language_code
 
     def translate_text(self, target_language: str, ontology_text: str) -> str:
         translate_client = translate_v2.Client()
