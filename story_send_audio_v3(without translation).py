@@ -18,21 +18,24 @@ class SparqlQuery:
 
 translation_keywords = {
     "en-US": ["translate", "translation", "interpret", "interpreter", "convert"],
-    "it-IT": ["tradurre", "tradurlo", "traduzione", "interpretare", "interprete", "convertire"],
+    "it-IT": ["tradurre", "traduciamo", "tradurlo", "traduzione",  "interpretare", "interprete", "convertire"],
     "Spanish": ["traducir", "traducción", "interpretar", "intérprete", "convertir"],
     "de-DE": ["übersetzen", "Übersetzung", "dolmetschen", "Dolmetscher", "umwandeln"]
 }
 
-def translation_request(transcribed_text, text_to_be_translated, og_language):
+def translation_request(transcribed_text, text_to_be_translated, language_code):
+
+    language_code = {'en-US': 'English', 'it-IT': 'Italian', 'de-DE': 'German'}.get(language_code, language_code)
+    print(f"language_code: {language_code}")
     # prompt = f"Robot asked Child: '{text_to_be_translated}', Child replied: '{transcribed_text}'. If translation is requested on the child's reply, give the translation of the question/reply('it'/'question' might refer to what robot asked) without asking follow-up questions. If No translation is requested, return just NO (Nothing else and no explanation). "
-    prompt = f"Child asked robot: Can you translate {text_to_be_translated}. Provide its translation and the explanation in {og_language} "
+    prompt = f"Child asked robot: Can you translate {text_to_be_translated}. Translate ONLY(NO OTHER EXPLANATION) '{text_to_be_translated}' in {language_code} "
     # prompt = f"Check if translation is explicitly requested in the following message: {transcribed_text}. If yes, give the translation without asking follow-up questions. If No, return just NO (Nothing else and no explanation). Does this reply ask to translate the previous question? If yes, return YES. If No, return No"
     response = information_extractor.extract_information(transcribed_text, prompt, temperature=0)
     print(response)
     # if response.lower() == "no":
     #     return None
     # translate_and_synthesize(og_language, ontology_text=response)
-    send_nao(Nao_text=response, language_code=og_language)
+    send_nao(Nao_text=response, language_code=language_code)
     # return True
 
 def is_translation_request(transcribed_text, og_language,text_to_be_translated):
@@ -99,13 +102,14 @@ client_socket.connect(('localhost', 12345))
 
 time = "Morning" if 6 <= datetime.now().hour < 18 else "Evening"
 
+
+text = "I'm Nao. Where do you come from?"
+language_code = "en-US"
+translator.synthesize_speech(language_code, text)
+
+receipt1 = send_nao(text, language_code)
+
 while True:
-    text = "I'm Nao. Where do you come from?"
-    language_code = "en-US"
-    translator.synthesize_speech(language_code, text)
-
-    receipt1 = send_nao(text, language_code)
-
     # translator.record(audio_file)
     # transcribed_text, og_language = translator.transcribe_multiple_languages_v2()
 
@@ -129,52 +133,76 @@ text = sparql_query.generate_question(random_food, ingredients, country)
 print(text)
 translate_and_synthesize(og_language, ontology_text=text)
 
-translator.record(audio_file)
-transcribed_text, og_language = translator.transcribe_multiple_languages_v2()
-# transcribed_text = input("Type your response: ")
-# og_language = input("Write your language code: ")
-get_response_make_dish(transcribed_text)
+while True:
+    # translator.record(audio_file)
+    # transcribed_text, og_language = translator.transcribe_multiple_languages_v2()
+    transcribed_text = input("Type your response: ")
+    og_language = input("Write your language code: ")
+    translation_request_result = is_translation_request(transcribed_text, og_language,text_to_be_translated=text)
+
+
+    if translation_request_result is False:
+        get_response_make_dish(transcribed_text)
+        break
+
 
 text = "Now, let's explore another culture. Where would you like to go next?"
 print(text)
 translate_and_synthesize(og_language, ontology_text=text)
 
-translator.record(audio_file)
-transcribed_text, og_language = translator.transcribe_multiple_languages_v2()
-# transcribed_text = input("Type your response: ")
-# og_language = input("Write your language code: ")
+while True:
+    # translator.record(audio_file)
+    # transcribed_text, og_language = translator.transcribe_multiple_languages_v2()
+    transcribed_text = input("Type your response: ")
+    og_language = input("Write your language code: ")
+    translation_request_result = is_translation_request(transcribed_text, og_language,text_to_be_translated=text)
 
-country = get_country(transcribed_text)
-if country == "Germany":
-    native_language = "German"
-if country == "Italy":
-    native_language = "Italian"
+    if translation_request_result is False:
 
-ontology_text, random_food = sparql_query.run_query(country, time)
-description = sparql_query.get_description(random_food)
+        country = get_country(transcribed_text)
+        if country == "Germany":
+            native_language = "German"
+        if country == "Italy":
+            native_language = "Italian"
+
+        ontology_text, random_food = sparql_query.run_query(country, time)
+        description = sparql_query.get_description(random_food)
+        break
+
 
 text = f"Wonderful choice! In {country}, people enjoy {random_food}. It’s a delicious {description}. Have you ever tried it?"
 print(text)
 translate_and_synthesize(og_language, ontology_text=text)
 
-translator.record(audio_file)
-transcribed_text, og_language = translator.transcribe_multiple_languages_v2()
-# transcribed_text = input("Type your response: ")
-# og_language = input("Write your language code: ")
-get_response_try_dish(transcribed_text)
+while True:
+    # translator.record(audio_file)
+    # transcribed_text, og_language = translator.transcribe_multiple_languages_v2()
+    transcribed_text = input("Type your response: ")
+    og_language = input("Write your language code: ")
+    translation_request_result = is_translation_request(transcribed_text, og_language,text_to_be_translated=text)
+    if translation_request_result is False:    
+        get_response_try_dish(transcribed_text)
+        break
+
 
 question =f"Apart from its cuisine, {country} is also known for its language. Would you like to learn a few simple phrases in {native_language}?"
 print(question)
 translate_and_synthesize(og_language, ontology_text=question)
 
-translator.record(audio_file)
-transcribed_text, og_language = translator.transcribe_multiple_languages_v2()
-# transcribed_text = input("Type your response: ")
-# og_language = input("Write your language code: ")
-response = get_response_yes_or_no(transcribed_text)
-print(response)
+while True:
+    # translator.record(audio_file)
+    # transcribed_text, og_language = translator.transcribe_multiple_languages_v2()
+    transcribed_text = input("Type your response: ")
+    og_language = input("Write your language code: ")
+    translation_request_result = is_translation_request(transcribed_text, og_language,text_to_be_translated=text)
+
+    if translation_request_result is False: 
+        response = get_response_yes_or_no(transcribed_text)
+        print(response)
+        break
 
 if response == 'yes':
+    
     phrases = sparql_query.get_phrases(native_language)
     phrase_strings = [f'"{translation}" means "{phrase}"' for phrase, translation in phrases]
 
@@ -188,13 +216,18 @@ if response == 'yes':
     question = "Would you like to hear it one more time?"
     print(question)
     translate_and_synthesize(og_language, ontology_text=question)
+    
+    while True:
+        # translator.record(audio_file)
+        # transcribed_text, og_language = translator.transcribe_multiple_languages_v2()
+        transcribed_text = input("Type your response: ")
+        og_language = input("Write your language code: ")
+        translation_request_result = is_translation_request(transcribed_text, og_language,text_to_be_translated=text)
 
-    translator.record(audio_file)
-    transcribed_text, og_language = translator.transcribe_multiple_languages_v2()
-    # transcribed_text = input("Type your response: ")
-    # og_language = input("Write your language code: ")
-    response = get_response_yes_or_no(transcribed_text)
-    print(response)
+        if translation_request_result is False: 
+            response = get_response_yes_or_no(transcribed_text)
+            print(response)
+            break
 
     if response == 'yes':
         phrases = sparql_query.get_phrases(native_language)
@@ -213,15 +246,18 @@ if response == 'yes':
 else:
     text = "Okay. Let's move on to another topic."
     translate_and_synthesize(og_language, ontology_text=text)
+    
+language_code = {'en-US': 'English', 'it-IT': 'Italian', 'de-DE': 'German'}.get(og_language, og_language)
 
-text = f"Would you like to translate something in {og_language} to any other language?"
+text = f"Would you like to translate something in {language_code} to any other language?"
 print(text)
 translate_and_synthesize(og_language, ontology_text=text)
 
-translator.record(audio_file)
-transcribed_text, og_language = translator.transcribe_multiple_languages_v2()
-# transcribed_text = input("Type your response: ")
-# og_language = input("Write your language code: ")
+# translator.record(audio_file)
+# transcribed_text, og_language = translator.transcribe_multiple_languages_v2()
+transcribed_text = input("Type your response: ")
+og_language = input("Write your language code: ")
+translation_request_result = is_translation_request(transcribed_text, og_language,text_to_be_translated=text)
 response = get_response_yes_or_no(transcribed_text)
 print(response)
 
@@ -229,10 +265,11 @@ if response == 'yes':
     text = "What would you like to translate and to which language you want to translate it to?"
     print(text)
     translate_and_synthesize(og_language, ontology_text=text)
-    translator.record(audio_file)
-    transcribed_text, og_language = translator.transcribe_multiple_languages_v2()
-    # transcribed_text = input("Type your response: ")
-    # og_language = input("Write your language code: ")
+    # translator.record(audio_file)
+    # transcribed_text, og_language = translator.transcribe_multiple_languages_v2()
+    transcribed_text = input("Type your response: ")
+    og_language = input("Write your language code: ")
+    translation_request_result = is_translation_request(transcribed_text, og_language,text_to_be_translated=text)
 
     user_translation(transcribed_text)
 

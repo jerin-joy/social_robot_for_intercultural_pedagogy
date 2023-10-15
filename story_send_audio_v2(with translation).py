@@ -201,7 +201,9 @@ else:
     text = "Okay. Let's move on to another topic."
     translate_and_synthesize(og_language, ontology_text=text)
 
-text = f"Would you like to translate something in {og_language} to any other language?"
+language_code = {'en-US': 'English', 'it-IT': 'Italian', 'de-DE': 'German'}.get(og_language, og_language)
+
+text = f"Would you like to translate something in {language_code} to any other language?"
 print(text)
 translate_and_synthesize(og_language, ontology_text=text)
 

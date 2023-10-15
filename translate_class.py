@@ -60,9 +60,16 @@ class SpeechToTextTranslator:
         # Transcribes the audio into text
         response = client.recognize(request=request)
 
-        for result in response.results:
-            # print(f"Transcript: {result.alternatives[0].transcript}")
-            pass
+        if response.results:
+            for result in response.results:
+                pass
+            return result.alternatives[0].transcript, result.language_code
+        else:
+            return None, None  # or some other default value
+
+        # for result in response.results:
+        #     # print(f"Transcript: {result.alternatives[0].transcript}")
+        #     pass
 
         
         # # Check if it's a translation request
@@ -75,7 +82,7 @@ class SpeechToTextTranslator:
         #     # If it's not a translation request, return the transcribed text and language code as usual
         #     return result.alternatives[0].transcript, result.language_code
 
-        return result.alternatives[0].transcript, result.language_code
+        # return result.alternatives[0].transcript, result.language_code
 
     def translate_text(self, target_language: str, ontology_text: str) -> str:
         translate_client = translate_v2.Client()
