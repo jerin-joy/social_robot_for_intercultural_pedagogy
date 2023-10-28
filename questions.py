@@ -49,6 +49,29 @@ class SparqlQueryQuestions:
         # Generate the text
         return question_format.format(greeting=greeting, random_food=random_food), random_food
     
+    def get_country_capital(self, country):
+        query = """
+            PREFIX : <http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#>
+            SELECT ?capital
+            WHERE {{
+                :{} :hasCapital ?capital .
+            }}
+        """.format(country)
+
+        results = default_world.sparql(query)
+        return self.process_country_capital(results, country)
+
+    def process_country_capital(self, results, country):
+        # Convert the results to a list
+        results_list = list(results)
+
+        # Get the capital from the first result
+        capital = results_list[0][0].name.replace('_', ' ')
+
+        # Generate the text
+        return "Oh, that's wonderful! {} is a beautiful country. Did you know that the capital of {} is {}?".format(country, country, capital)
+
+    
     def get_ingredients(self, food):
         query = f"""
             PREFIX : <http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#>
