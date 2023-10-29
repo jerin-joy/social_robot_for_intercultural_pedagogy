@@ -66,6 +66,18 @@ def get_response_make_dish(transcribed_text):
     print(response)
     translate_and_synthesize(og_language, ontology_text=response)
 
+def get_response_communication(transcribed_text):
+    prompt = f"The child was asked: 'Imagine that in my home, we communicate through light patterns. How do you express yourselves here?'. The child replied: '{transcribed_text}'. Give a reply to the child's answer without asking a question."
+    response = information_extractor.extract_information(transcribed_text, prompt, temperature=0)
+    print(response)
+    translate_and_synthesize(og_language, ontology_text=response)
+
+def get_response_food(transcribed_text):
+    prompt = f"The child was asked: 'What kind of food do you eat in your country?'. The child replied: '{transcribed_text}'. Give a reply to the child's answer without asking a question."
+    response = information_extractor.extract_information(transcribed_text, prompt, temperature=0)
+    print(response)
+    translate_and_synthesize(og_language, ontology_text=response)
+
 def get_response_try_dish(transcribed_text):
     prompt = f"The child was asked: 'Have you ever tried _____(a dish)?'. The child replied: '{transcribed_text}'. Give a reply to the child's answer WITHOUT asking a question at the end."
     response = information_extractor.extract_information(transcribed_text, prompt, temperature=0)
@@ -111,6 +123,7 @@ time = "Morning" if 6 <= datetime.now().hour < 18 else "Evening"
 
 # Hello there, little Earthlings!
 text = questions[0]
+print(text)
 language_code = "en-US"
 translator.synthesize_speech(language_code, text)
 
@@ -128,7 +141,7 @@ while True:
     if translation_request_result is False:
         country = get_country(transcribed_text)
 
-        country_capital_text = sparql_query.get_country_capital(country)
+        country_capital_text = sparql_query.get_country_capital(country, time)
         print(country_capital_text)
         translate_and_synthesize(og_language, country_capital_text)
 
@@ -154,14 +167,50 @@ while True:
         # translate_and_synthesize(og_language, ontology_text)
         break
 
+# How do you express yourselves?
 text = questions[1]
 print(text)
 translate_and_synthesize(og_language, ontology_text=text)
 
-ingredients = sparql_query.get_ingredients(random_food)
-text = sparql_query.generate_question(random_food, ingredients, country)
+while True:
+    # translator.record(audio_file)
+    # transcribed_text, og_language = translator.transcribe_multiple_languages_v2()
+    transcribed_text = input("Type your response: ")
+    og_language = input("Write your language code: ")
+    translation_request_result = is_translation_request(transcribed_text, og_language,text_to_be_translated=text)
+
+
+    if translation_request_result is False:
+        get_response_communication(transcribed_text)
+        break
+
+
+# What kind of food do you eat in your country?
+text = questions[2]
 print(text)
 translate_and_synthesize(og_language, ontology_text=text)
+
+while True:
+    # translator.record(audio_file)
+    # transcribed_text, og_language = translator.transcribe_multiple_languages_v2()
+    transcribed_text = input("Type your response: ")
+    og_language = input("Write your language code: ")
+    translation_request_result = is_translation_request(transcribed_text, og_language,text_to_be_translated=text)
+
+
+    if translation_request_result is False:
+        get_response_food(transcribed_text)
+
+        ontology_text, random_food = sparql_query.run_query(country, time)
+        print(ontology_text)
+        translate_and_synthesize(og_language, ontology_text)
+        break
+
+
+# ingredients = sparql_query.get_ingredients(random_food)
+# text = sparql_query.generate_question(random_food, ingredients, country)
+# print(text)
+# translate_and_synthesize(og_language, ontology_text=text)
 
 while True:
     # translator.record(audio_file)
@@ -175,8 +224,8 @@ while True:
         get_response_make_dish(transcribed_text)
         break
 
-
-text = questions[1]
+# What kinds of animals do you have here, and what do you do with them?
+text = questions[3]
 print(text)
 translate_and_synthesize(og_language, ontology_text=text)
 
@@ -187,16 +236,82 @@ while True:
     og_language = input("Write your language code: ")
     translation_request_result = is_translation_request(transcribed_text, og_language,text_to_be_translated=text)
 
+
     if translation_request_result is False:
+        get_response_communication(transcribed_text)
+        break
 
-        country = get_country(transcribed_text)
-        if country == "Germany":
-            native_language = "German"
-        if country == "Italy":
-            native_language = "Italian"
+# What do you do for fun in your country? 
+text = questions[4]
+print(text)
+translate_and_synthesize(og_language, ontology_text=text)
 
-        ontology_text, random_food = sparql_query.run_query(country, time)
-        description = sparql_query.get_description(random_food)
+while True:
+    # translator.record(audio_file)
+    # transcribed_text, og_language = translator.transcribe_multiple_languages_v2()
+    transcribed_text = input("Type your response: ")
+    og_language = input("Write your language code: ")
+    translation_request_result = is_translation_request(transcribed_text, og_language,text_to_be_translated=text)
+
+
+    if translation_request_result is False:
+        get_response_communication(transcribed_text)
         break
 
 
+# What special celebrations do you have here?
+text = questions[5]
+print(text)
+translate_and_synthesize(og_language, ontology_text=text)
+
+while True:
+    # translator.record(audio_file)
+    # transcribed_text, og_language = translator.transcribe_multiple_languages_v2()
+    transcribed_text = input("Type your response: ")
+    og_language = input("Write your language code: ")
+    translation_request_result = is_translation_request(transcribed_text, og_language,text_to_be_translated=text)
+
+
+    if translation_request_result is False:
+        get_response_communication(transcribed_text)
+        break
+
+# What's your favorite game to play with friends?
+text = questions[6]
+print(text)
+translate_and_synthesize(og_language, ontology_text=text)
+
+while True:
+    # translator.record(audio_file)
+    # transcribed_text, og_language = translator.transcribe_multiple_languages_v2()
+    transcribed_text = input("Type your response: ")
+    og_language = input("Write your language code: ")
+    translation_request_result = is_translation_request(transcribed_text, og_language,text_to_be_translated=text)
+
+
+    if translation_request_result is False:
+        get_response_communication(transcribed_text)
+        break
+
+
+# What would you wish for, if you could have any adventure in the universe?
+text = questions[7]
+print(text)
+translate_and_synthesize(og_language, ontology_text=text)
+
+while True:
+    # translator.record(audio_file)
+    # transcribed_text, og_language = translator.transcribe_multiple_languages_v2()
+    transcribed_text = input("Type your response: ")
+    og_language = input("Write your language code: ")
+    translation_request_result = is_translation_request(transcribed_text, og_language,text_to_be_translated=text)
+
+
+    if translation_request_result is False:
+        get_response_communication(transcribed_text)
+        break
+
+
+text = questions[8]
+print(text)
+translate_and_synthesize(og_language, ontology_text=text)
