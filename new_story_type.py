@@ -55,6 +55,9 @@ def send_nao(Nao_text, language_code):
     print(data)
     return(data)
 
+def sentence_case(input_string):
+    return input_string[0].upper() + input_string[1:].lower()
+
 def translate_and_synthesize(og_language, ontology_text):
     text = translator.translate_text(og_language, ontology_text)
     translator.synthesize_speech(og_language, text)
@@ -89,6 +92,46 @@ def get_response_capital(transcribed_text):
     response = information_extractor.extract_information(transcribed_text, prompt, temperature=0)
     print(response)
     translate_and_synthesize(og_language, ontology_text=response)
+
+def get_response_animals(transcribed_text):
+    prompt = f"The child was asked: 'What kinds of animals do you have here, and what do you do with them?'. The child replied: '{transcribed_text}'. Give a reply to the child's answer WITHOUT asking a question at the end."
+    response = information_extractor.extract_information(transcribed_text, prompt, temperature=0)
+    print(response)
+    translate_and_synthesize(og_language, ontology_text=response)
+
+def get_response_sport(transcribed_text):
+    prompt = f"The child was asked: 'What sports do you like?'. The child replied: '{transcribed_text}'. Return ONLY the name of the sport from child's reply."
+    response = information_extractor.extract_information(transcribed_text, prompt, temperature=0)
+    print(response)
+    return sentence_case(response)
+
+def get_response_sport2(transcribed_text):
+    prompt = f"The child was asked: 'Do you know that the main players of _____ (sport) in _____(country) are ____(player names)?'. The child replied: '{transcribed_text}'. Give a reply to the child's answer WITHOUT asking a question at the end."
+    response = information_extractor.extract_information(transcribed_text, prompt, temperature=0)
+    print(response)
+    translate_and_synthesize(og_language, ontology_text=response)
+
+def get_response_adventure(transcribed_text):
+    prompt = f"The child was asked: 'What would you wish for, if you could have any adventure in the universe?'. The child replied: '{transcribed_text}'. Give a reply to the child's answer WITHOUT asking a question at the end."
+    response = information_extractor.extract_information(transcribed_text, prompt, temperature=0)
+    print(response)
+    translate_and_synthesize(og_language, ontology_text=response)
+
+
+def get_response_festivals(transcribed_text):
+    prompt = f"The child was asked: 'Have you ever participated in any of these festivals?'. The child replied: '{transcribed_text}'. Give a reply to the child's answer WITHOUT asking a question at the end."
+    response = information_extractor.extract_information(transcribed_text, prompt, temperature=0)
+    print(response)
+    translate_and_synthesize(og_language, ontology_text=response)
+
+def get_response_fun(transcribed_text):
+    prompt = f"The child was asked: 'What do you do for fun in your country?'. The child replied: '{transcribed_text}'. If the child mentions something about sports, Return a 'Yes'. Else, give a suitable reply to the child's answer WITHOUT asking a question at the end."
+    response = information_extractor.extract_information(transcribed_text, prompt, temperature=0)
+    if response.lower() != "yes." or "yes":
+        print(response)
+        translate_and_synthesize(og_language, ontology_text=response)
+    else:
+        return response.lower()
 
 def get_response_yes_or_no(transcribed_text):
     prompt = f"The child was asked: 'Would you like to learn a few simple phrases in ____ (language). The child replied: '{transcribed_text}'. Return a 'Yes' or 'No' based on the child's answer"
@@ -238,9 +281,12 @@ while True:
 
 
     if translation_request_result is False:
-        get_response_communication(transcribed_text)
+        get_response_animals(transcribed_text)
         break
 
+
+og_language = "en-US"
+country = "Italy"
 # What do you do for fun in your country? 
 text = questions[4]
 print(text)
@@ -255,7 +301,40 @@ while True:
 
 
     if translation_request_result is False:
-        get_response_communication(transcribed_text)
+        get_response = get_response_fun(transcribed_text)
+        print(f"Get response: {get_response}")
+        if get_response == 'yes' or get_response == 'yes.':
+            if country == 'Italy':
+                text = "What sports do you like? Do you like Football or Volleyball?"
+                print(text)
+                translate_and_synthesize(og_language, ontology_text=text)
+                transcribed_text = input("Type your response: ")
+                og_language = input("Write your language code: ")
+                sport = get_response_sport(transcribed_text)
+                text = sparql_query.get_main_players(sport, country)
+                print(text)
+                translate_and_synthesize(og_language, ontology_text=text)
+                transcribed_text = input("Type your response: ")
+                og_language = input("Write your language code: ")
+                get_response_sport2(transcribed_text)
+            
+            elif country == 'Germany':
+                text = "What sports do you like? Do you like Football?"
+                print(text)
+                translate_and_synthesize(og_language, ontology_text=text)
+                transcribed_text = input("Type your response: ")
+                og_language = input("Write your language code: ")
+                sport = get_response_sport(transcribed_text)
+                text = sparql_query.get_main_players(sport, country)
+                print(text)
+                translate_and_synthesize(og_language, ontology_text=text)
+                transcribed_text = input("Type your response: ")
+                og_language = input("Write your language code: ")
+                get_response_sport2(transcribed_text)
+        else:
+            break
+
+
         break
 
 
@@ -273,10 +352,16 @@ while True:
 
 
     if translation_request_result is False:
-        get_response_communication(transcribed_text)
+        text = sparql_query.get_main_festivals(country)
+        print(text)
+        translate_and_synthesize(og_language, ontology_text=text)
+        transcribed_text = input("Type your response: ")
+        og_language = input("Write your language code: ")
+        get_response_festivals(transcribed_text)
+
         break
 
-# What's your favorite game to play with friends?
+# What would you wish for, if you could have any adventure in the universe?
 text = questions[6]
 print(text)
 translate_and_synthesize(og_language, ontology_text=text)
@@ -290,28 +375,10 @@ while True:
 
 
     if translation_request_result is False:
-        get_response_communication(transcribed_text)
+        get_response_adventure(transcribed_text)
         break
 
 
-# What would you wish for, if you could have any adventure in the universe?
 text = questions[7]
-print(text)
-translate_and_synthesize(og_language, ontology_text=text)
-
-while True:
-    # translator.record(audio_file)
-    # transcribed_text, og_language = translator.transcribe_multiple_languages_v2()
-    transcribed_text = input("Type your response: ")
-    og_language = input("Write your language code: ")
-    translation_request_result = is_translation_request(transcribed_text, og_language,text_to_be_translated=text)
-
-
-    if translation_request_result is False:
-        get_response_communication(transcribed_text)
-        break
-
-
-text = questions[8]
 print(text)
 translate_and_synthesize(og_language, ontology_text=text)

@@ -216,7 +216,7 @@ if response == 'yes':
     question = "Would you like to hear it one more time?"
     print(question)
     translate_and_synthesize(og_language, ontology_text=question)
-    
+
     while True:
         # translator.record(audio_file)
         # transcribed_text, og_language = translator.transcribe_multiple_languages_v2()
@@ -269,7 +269,7 @@ if response == 'yes':
     # transcribed_text, og_language = translator.transcribe_multiple_languages_v2()
     transcribed_text = input("Type your response: ")
     og_language = input("Write your language code: ")
-    translation_request_result = is_translation_request(transcribed_text, og_language,text_to_be_translated=text)
+    # translation_request_result = is_translation_request(transcribed_text, og_language,text_to_be_translated=text)
 
     user_translation(transcribed_text)
 

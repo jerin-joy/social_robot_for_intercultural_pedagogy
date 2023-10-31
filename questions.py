@@ -117,5 +117,51 @@ class SparqlQueryQuestions:
         results = default_world.sparql(query)
         phrases = [(row[0].name.replace('_', ' '), row[1].name.replace('_', ' ')) for row in results]
         return phrases
+    
+    def get_main_players(self, sport, country):
+        query = """
+            PREFIX : <http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#>
+            SELECT ?player
+            WHERE {{
+                ?player :isAPlayerOf :{} .
+                ?player :hasCountry :{} .
+            }}
+        """.format(sport, country)
+
+        results = default_world.sparql(query)
+        return self.process_main_players(results, sport, country)
+
+    def process_main_players(self, results, sport, country):
+        # Convert the results to a list
+        results_list = list(results)
+
+        # Get the players from the results
+        players = [result[0].name.replace('_', ' ') for result in results_list]
+
+        # Generate the text
+        return "Do you know that the main players of {} in {} are {}?".format(sport, country, ', '.join(players))
+    
+    def get_main_festivals(self, country):
+        query = """
+            PREFIX : <http://www.semanticweb.org/jerin/ontologies/2023/6/pedagogy-ontology-v2#>
+            SELECT ?festival
+            WHERE {{
+                ?festival :isAFestivalOf :{} .
+            }}
+        """.format(country)
+
+        results = default_world.sparql(query)
+        return self.process_main_festivals(results, country)
+
+
+    def process_main_festivals(self, results, country):
+        # Convert the results to a list
+        results_list = list(results)
+
+        # Get the festivals from the results
+        festivals = [result[0].name.replace('_', ' ') for result in results_list]
+
+        # Generate the text
+        return "That's great! Do you also enjoy festivals? Some of the main festivals in {} are {}. Have you ever participated in any of these festivals?".format(country, ', '.join(festivals))
 
 
