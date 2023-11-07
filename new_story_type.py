@@ -1,10 +1,11 @@
 from translate_class import SpeechToTextTranslator
-from new_questions import questions
+# from new_questions import questions
 # from translation_handler import TranslationHandler
 from openai_class import InformationExtractor
 from owlready2 import get_ontology, default_world
 from datetime import datetime
 import socket
+import new_questions
 from pydub import AudioSegment
 from questions import SparqlQueryQuestions
 
@@ -25,7 +26,7 @@ translation_keywords = {
 }
 
 def translation_request(transcribed_text, text_to_be_translated, language_code):
-
+    target_language = language_code
     language_code = {'en-US': 'English', 'it-IT': 'Italian', 'de-DE': 'German'}.get(language_code, language_code)
     print(f"language_code: {language_code}")
     # prompt = f"Robot asked Child: '{text_to_be_translated}', Child replied: '{transcribed_text}'. If translation is requested on the child's reply, give the translation of the question/reply('it'/'question' might refer to what robot asked) without asking follow-up questions. If No translation is requested, return just NO (Nothing else and no explanation). "
@@ -36,6 +37,7 @@ def translation_request(transcribed_text, text_to_be_translated, language_code):
     # if response.lower() == "no":
     #     return None
     # translate_and_synthesize(og_language, ontology_text=response)
+    translator.synthesize_speech(target_language, response)
     send_nao(Nao_text=response, language_code=language_code)
     # return True
 
@@ -165,7 +167,7 @@ client_socket.connect(('localhost', 12345))
 time = "Morning" if 6 <= datetime.now().hour < 18 else "Evening"
 
 # Hello there, little Earthlings!
-text = questions[0]
+text = new_questions.get_question(0)
 print(text)
 language_code = "en-US"
 translator.synthesize_speech(language_code, text)
@@ -211,7 +213,7 @@ while True:
         break
 
 # How do you express yourselves?
-text = questions[1]
+text = new_questions.get_question(1)
 print(text)
 translate_and_synthesize(og_language, ontology_text=text)
 
@@ -229,7 +231,7 @@ while True:
 
 
 # What kind of food do you eat in your country?
-text = questions[2]
+text = new_questions.get_question(2)
 print(text)
 translate_and_synthesize(og_language, ontology_text=text)
 
@@ -268,7 +270,7 @@ while True:
         break
 
 # What kinds of animals do you have here, and what do you do with them?
-text = questions[3]
+text = new_questions.get_question(3)
 print(text)
 translate_and_synthesize(og_language, ontology_text=text)
 
@@ -288,7 +290,7 @@ while True:
 og_language = "en-US"
 country = "Italy"
 # What do you do for fun in your country? 
-text = questions[4]
+text = new_questions.get_question(4)
 print(text)
 translate_and_synthesize(og_language, ontology_text=text)
 
@@ -339,7 +341,7 @@ while True:
 
 
 # What special celebrations do you have here?
-text = questions[5]
+text = new_questions.get_question(5)
 print(text)
 translate_and_synthesize(og_language, ontology_text=text)
 
@@ -362,7 +364,7 @@ while True:
         break
 
 # What would you wish for, if you could have any adventure in the universe?
-text = questions[6]
+text = new_questions.get_question(6)
 print(text)
 translate_and_synthesize(og_language, ontology_text=text)
 
@@ -379,6 +381,6 @@ while True:
         break
 
 
-text = questions[7]
+text = new_questions.get_question(7)
 print(text)
 translate_and_synthesize(og_language, ontology_text=text)

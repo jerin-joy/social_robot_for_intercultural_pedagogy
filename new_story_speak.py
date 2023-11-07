@@ -4,6 +4,7 @@ from new_questions import questions
 from openai_class import InformationExtractor
 from owlready2 import get_ontology, default_world
 from datetime import datetime
+import random
 import socket
 from pydub import AudioSegment
 from questions import SparqlQueryQuestions
@@ -24,8 +25,11 @@ translation_keywords = {
     "de-DE": ["übersetzen", "Übersetzung", "dolmetschen", "Dolmetscher", "umwandeln"]
 }
 
-def translation_request(transcribed_text, text_to_be_translated, language_code):
 
+
+
+def translation_request(transcribed_text, text_to_be_translated, language_code):
+    target_language = language_code
     language_code = {'en-US': 'English', 'it-IT': 'Italian', 'de-DE': 'German'}.get(language_code, language_code)
     print(f"language_code: {language_code}")
     # prompt = f"Robot asked Child: '{text_to_be_translated}', Child replied: '{transcribed_text}'. If translation is requested on the child's reply, give the translation of the question/reply('it'/'question' might refer to what robot asked) without asking follow-up questions. If No translation is requested, return just NO (Nothing else and no explanation). "
@@ -36,6 +40,7 @@ def translation_request(transcribed_text, text_to_be_translated, language_code):
     # if response.lower() == "no":
     #     return None
     # translate_and_synthesize(og_language, ontology_text=response)
+    translator.synthesize_speech(target_language, response)
     send_nao(Nao_text=response, language_code=language_code)
     # return True
 
