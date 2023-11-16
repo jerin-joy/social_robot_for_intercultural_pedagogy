@@ -1,5 +1,8 @@
 from naoqi import ALProxy
 import socket
+from conversation_log import ConversationLogger
+
+logger = ConversationLogger('conversation.log')
 
 # Implementing a socket server.
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -19,6 +22,7 @@ while True:
             break
         # Split the received data into sentence and language code
         sentence, language_code = data.split('|')
+        logger.log_message('Robot', sentence)
         print("Received sentence: {}".format(sentence))
         print("Received language code: {}".format(language_code))
 

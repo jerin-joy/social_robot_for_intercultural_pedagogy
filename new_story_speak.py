@@ -1,13 +1,13 @@
 from translate_class import SpeechToTextTranslator
-from new_questions import questions
-# from translation_handler import TranslationHandler
 from openai_class import InformationExtractor
 from owlready2 import get_ontology, default_world
 from datetime import datetime
-import random
-import socket
+from conversation_log import ConversationLogger
 from pydub import AudioSegment
 from questions import SparqlQueryQuestions
+import socket
+import new_questions
+
 
 class SparqlQuery:
     def __init__(self, ontology_path):
@@ -24,9 +24,6 @@ translation_keywords = {
     "Spanish": ["traducir", "traducción", "interpretar", "intérprete", "convertir"],
     "de-DE": ["übersetzen", "Übersetzung", "dolmetschen", "Dolmetscher", "umwandeln"]
 }
-
-
-
 
 def translation_request(transcribed_text, text_to_be_translated, language_code):
     target_language = language_code
@@ -53,6 +50,7 @@ def is_translation_request(transcribed_text, og_language,text_to_be_translated):
     return False
 
 def send_nao(Nao_text, language_code):
+    # logger.log_message('Robot', text)
     language_code = {'en-US': 'English', 'it-IT': 'Italian', 'de-DE': 'German'}.get(language_code, language_code)
     message = f"{Nao_text}|{language_code}"
     client_socket.sendall(message.encode())
@@ -132,7 +130,7 @@ def get_response_festivals(transcribed_text):
 def get_response_fun(transcribed_text):
     prompt = f"The child was asked: 'What do you do for fun in your country?'. The child replied: '{transcribed_text}'. If the child mentions something about sports, Return a 'Yes'. Else, give a suitable reply to the child's answer WITHOUT asking a question at the end."
     response = information_extractor.extract_information(transcribed_text, prompt, temperature=0)
-    if response.lower() != "yes." or "yes":
+    if response.lower() != "yes." and response.lower()!= "yes": 
         print(response)
         translate_and_synthesize(og_language, ontology_text=response)
     else:
@@ -163,6 +161,7 @@ audio_file = "output.wav"
 information_extractor = InformationExtractor()
 translator = SpeechToTextTranslator(project_id, language_codes, audio_file)
 sparql_query = SparqlQueryQuestions("/home/jerin/robotics/Thesis/pedagogy_ontology_v2.rdf")
+logger = ConversationLogger('conversation.log')
 
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client_socket.connect(('localhost', 12345))
@@ -170,7 +169,7 @@ client_socket.connect(('localhost', 12345))
 time = "Morning" if 6 <= datetime.now().hour < 18 else "Evening"
 
 # Hello there, little Earthlings!
-text = questions[0]
+text = new_questions.get_question(0)
 print(text)
 language_code = "en-US"
 translator.synthesize_speech(language_code, text)
@@ -183,6 +182,7 @@ while True:
 
     # transcribed_text = input("Type your response: ")
     # og_language = input("Write your language code: ")
+    logger.log_message('Child', transcribed_text)
 
     translation_request_result = is_translation_request(transcribed_text, og_language,text_to_be_translated=text)
 
@@ -199,6 +199,7 @@ while True:
 
             # transcribed_text = input("Type your response: ")
             # og_language = input("Write your language code: ")
+            logger.log_message('Child', transcribed_text)
 
             translation_request_result = is_translation_request(transcribed_text, og_language,text_to_be_translated=text)
 
@@ -216,7 +217,7 @@ while True:
         break
 
 # How do you express yourselves?
-text = questions[1]
+text = new_questions.get_question(1)
 print(text)
 translate_and_synthesize(og_language, ontology_text=text)
 
@@ -225,6 +226,7 @@ while True:
     transcribed_text, og_language = translator.transcribe_multiple_languages_v2()
     # transcribed_text = input("Type your response: ")
     # og_language = input("Write your language code: ")
+    logger.log_message('Child', transcribed_text)
     translation_request_result = is_translation_request(transcribed_text, og_language,text_to_be_translated=text)
 
 
@@ -234,7 +236,7 @@ while True:
 
 
 # What kind of food do you eat in your country?
-text = questions[2]
+text = new_questions.get_question(2)
 print(text)
 translate_and_synthesize(og_language, ontology_text=text)
 
@@ -243,6 +245,7 @@ while True:
     transcribed_text, og_language = translator.transcribe_multiple_languages_v2()
     # transcribed_text = input("Type your response: ")
     # og_language = input("Write your language code: ")
+    logger.log_message('Child', transcribed_text)
     translation_request_result = is_translation_request(transcribed_text, og_language,text_to_be_translated=text)
 
 
@@ -265,6 +268,7 @@ while True:
     transcribed_text, og_language = translator.transcribe_multiple_languages_v2()
     # transcribed_text = input("Type your response: ")
     # og_language = input("Write your language code: ")
+    logger.log_message('Child', transcribed_text)
     translation_request_result = is_translation_request(transcribed_text, og_language,text_to_be_translated=text)
 
 
@@ -273,7 +277,7 @@ while True:
         break
 
 # What kinds of animals do you have here, and what do you do with them?
-text = questions[3]
+text = new_questions.get_question(3)
 print(text)
 translate_and_synthesize(og_language, ontology_text=text)
 
@@ -282,6 +286,7 @@ while True:
     transcribed_text, og_language = translator.transcribe_multiple_languages_v2()
     # transcribed_text = input("Type your response: ")
     # og_language = input("Write your language code: ")
+    logger.log_message('Child', transcribed_text)
     translation_request_result = is_translation_request(transcribed_text, og_language,text_to_be_translated=text)
 
 
@@ -290,10 +295,10 @@ while True:
         break
 
 
-og_language = "en-US"
-country = "Italy"
+# og_language = "en-US"
+# country = "Italy"
 # What do you do for fun in your country? 
-text = questions[4]
+text = new_questions.get_question(4)
 print(text)
 translate_and_synthesize(og_language, ontology_text=text)
 
@@ -302,6 +307,7 @@ while True:
     transcribed_text, og_language = translator.transcribe_multiple_languages_v2()
     # transcribed_text = input("Type your response: ")
     # og_language = input("Write your language code: ")
+    logger.log_message('Child', transcribed_text)
     translation_request_result = is_translation_request(transcribed_text, og_language,text_to_be_translated=text)
 
 
@@ -317,6 +323,7 @@ while True:
                 transcribed_text, og_language = translator.transcribe_multiple_languages_v2()
                 # transcribed_text = input("Type your response: ")
                 # og_language = input("Write your language code: ")
+                logger.log_message('Child', transcribed_text)
                 sport = get_response_sport(transcribed_text)
                 text = sparql_query.get_main_players(sport, country)
                 print(text)
@@ -325,6 +332,7 @@ while True:
                 transcribed_text, og_language = translator.transcribe_multiple_languages_v2()
                 # transcribed_text = input("Type your response: ")
                 # og_language = input("Write your language code: ")
+                logger.log_message('Child', transcribed_text)
                 get_response_sport2(transcribed_text)
             
             elif country == 'Germany':
@@ -335,6 +343,7 @@ while True:
                 transcribed_text, og_language = translator.transcribe_multiple_languages_v2()
                 # transcribed_text = input("Type your response: ")
                 # og_language = input("Write your language code: ")
+                logger.log_message('Child', transcribed_text)
                 sport = get_response_sport(transcribed_text)
                 text = sparql_query.get_main_players(sport, country)
                 print(text)
@@ -343,6 +352,7 @@ while True:
                 transcribed_text, og_language = translator.transcribe_multiple_languages_v2()
                 # transcribed_text = input("Type your response: ")
                 # og_language = input("Write your language code: ")
+                logger.log_message('Child', transcribed_text)
                 get_response_sport2(transcribed_text)
         else:
             break
@@ -352,7 +362,7 @@ while True:
 
 
 # What special celebrations do you have here?
-text = questions[5]
+text = new_questions.get_question(5)
 print(text)
 translate_and_synthesize(og_language, ontology_text=text)
 
@@ -361,6 +371,7 @@ while True:
     transcribed_text, og_language = translator.transcribe_multiple_languages_v2()
     # transcribed_text = input("Type your response: ")
     # og_language = input("Write your language code: ")
+    logger.log_message('Child', transcribed_text)
     translation_request_result = is_translation_request(transcribed_text, og_language,text_to_be_translated=text)
 
 
@@ -372,12 +383,13 @@ while True:
         transcribed_text, og_language = translator.transcribe_multiple_languages_v2()
         # transcribed_text = input("Type your response: ")
         # og_language = input("Write your language code: ")
+        logger.log_message('Child', transcribed_text)
         get_response_festivals(transcribed_text)
 
         break
 
 # What would you wish for, if you could have any adventure in the universe?
-text = questions[6]
+text = new_questions.get_question(6)
 print(text)
 translate_and_synthesize(og_language, ontology_text=text)
 
@@ -386,6 +398,7 @@ while True:
     transcribed_text, og_language = translator.transcribe_multiple_languages_v2()
     # transcribed_text = input("Type your response: ")
     # og_language = input("Write your language code: ")
+    logger.log_message('Child', transcribed_text)
     translation_request_result = is_translation_request(transcribed_text, og_language,text_to_be_translated=text)
 
 
@@ -394,6 +407,6 @@ while True:
         break
 
 
-text = questions[7]
+text = new_questions.get_question(7)
 print(text)
 translate_and_synthesize(og_language, ontology_text=text)
