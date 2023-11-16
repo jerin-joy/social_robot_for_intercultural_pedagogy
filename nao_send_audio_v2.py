@@ -1,6 +1,9 @@
 from naoqi import ALProxy
 import paramiko
 import socket
+from conversation_log import ConversationLogger
+
+logger = ConversationLogger('conversation.log')
 
 # Your Nao's IP address and port
 nao_ip = "ricenao.local"
@@ -32,6 +35,7 @@ while True:
 
         # Split the received data into sentence and language code
         sentence, language_code = data.split('|')
+        logger.log_message('Robot', sentence)
         print("Received sentence: {}".format(sentence))
         print("Received language code: {}".format(language_code))
 

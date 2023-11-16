@@ -154,7 +154,7 @@ def user_translation(transcribed_text):
     translate_and_synthesize(og_language, ontology_text=response)
     
 
-project_id = "decent-digit-395614"
+project_id = "resonant-tract-404715"
 language_codes = ["en-US", "de-DE", "it-IT"]
 audio_file = "output.wav"
 

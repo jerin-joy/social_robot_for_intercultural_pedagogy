@@ -153,13 +153,13 @@ def user_translation(transcribed_text):
     translate_and_synthesize(og_language, ontology_text=response)
 
 def collaborative_story(transcribed_text, next_question):
-    prompt = f"Given the previous response ‘{transcribed_text}’, please modify the following question ‘{next_question}’ such that it is related to the previous response and also maintain the flow of a collaborative storytelling. Remember to use the person’s name only at the end of the question and keep the original intent of the question intact. If the response is unrelated to the question, don't change anything."
+    prompt = f"Given the previous response ‘{transcribed_text}’, please modify the following question ‘{next_question}’ such that it is related to the previous response and also maintain the flow of a collaborative storytelling. Remember to use the person’s name only at the end of the question and keep the original intent of the question intact."
     response = information_extractor.extract_information(transcribed_text, prompt, temperature=0.5)
     print(response)
     translate_and_synthesize(og_language, ontology_text=response)    
     
 
-project_id = "decent-digit-395614"
+project_id = "resonant-tract-404715"
 language_codes = ["en-US", "de-DE", "it-IT"]
 audio_file = "output.wav"
 
