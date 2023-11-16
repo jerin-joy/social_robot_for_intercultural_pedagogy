@@ -9,7 +9,7 @@ from pydub import AudioSegment
 
 
 
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r"decent-digit-395614-9ef078739d62.json"
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = r"resonant-tract-404715-632e6ffe2635.json"
 
 class SpeechToTextTranslator:
     def __init__(self, project_id: str, language_codes: List[str], audio_file: str):
