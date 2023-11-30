@@ -1,4 +1,5 @@
 from naoqi import ALProxy
+import time
 import paramiko
 import socket
 from conversation_log import ConversationLogger
@@ -45,8 +46,16 @@ while True:
 
         sftp = paramiko.SFTPClient.from_transport(transport)
 
+        # Start the timer
+        start_time = time.time()
+
         # Upload and play audio files
         sftp.put(local_file_path, file_path_on_robot)
+
+        # End the timer
+        end_time = time.time()
+
+        print("Time taken to send audio: {} seconds".format(end_time - start_time))
 
         # Load a local audio file on the robot
         file_id = audio_player.loadFile(file_path_on_robot)

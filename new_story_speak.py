@@ -29,17 +29,12 @@ def translation_request(transcribed_text, text_to_be_translated, language_code):
     target_language = language_code
     language_code = {'en-US': 'English', 'it-IT': 'Italian', 'de-DE': 'German'}.get(language_code, language_code)
     print(f"language_code: {language_code}")
-    # prompt = f"Robot asked Child: '{text_to_be_translated}', Child replied: '{transcribed_text}'. If translation is requested on the child's reply, give the translation of the question/reply('it'/'question' might refer to what robot asked) without asking follow-up questions. If No translation is requested, return just NO (Nothing else and no explanation). "
     prompt = f"Child asked robot: Can you translate {text_to_be_translated}. Translate ONLY(NO OTHER EXPLANATION) '{text_to_be_translated}' in {language_code} "
-    # prompt = f"Check if translation is explicitly requested in the following message: {transcribed_text}. If yes, give the translation without asking follow-up questions. If No, return just NO (Nothing else and no explanation). Does this reply ask to translate the previous question? If yes, return YES. If No, return No"
     response = information_extractor.extract_information(transcribed_text, prompt, temperature=0)
     print(response)
-    # if response.lower() == "no":
-    #     return None
-    # translate_and_synthesize(og_language, ontology_text=response)
     translator.synthesize_speech(target_language, response)
     send_nao(Nao_text=response, language_code=language_code)
-    # return True
+
 
 def is_translation_request(transcribed_text, og_language,text_to_be_translated):
     for keyword in translation_keywords[og_language]:
@@ -155,7 +150,7 @@ def user_translation(transcribed_text):
     
 
 project_id = "resonant-tract-404715"
-language_codes = ["en-US", "de-DE", "it-IT"]
+language_codes = ["it-IT"]
 audio_file = "output.wav"
 
 information_extractor = InformationExtractor()
@@ -197,11 +192,17 @@ while True:
             translator.record(audio_file)
             transcribed_text, og_language = translator.transcribe_multiple_languages_v2()
 
+            if og_language is None:
+                print("Could not transcribe audio. Please try again.")
+            else:
+                logger.log_message('Child', transcribed_text)
+                translation_request_result = is_translation_request(transcribed_text, og_language,text_to_be_translated=text)
+
             # transcribed_text = input("Type your response: ")
             # og_language = input("Write your language code: ")
-            logger.log_message('Child', transcribed_text)
+            # logger.log_message('Child', transcribed_text)
 
-            translation_request_result = is_translation_request(transcribed_text, og_language,text_to_be_translated=text)
+            # translation_request_result = is_translation_request(transcribed_text, og_language,text_to_be_translated=text)
 
             if translation_request_result is False:
 

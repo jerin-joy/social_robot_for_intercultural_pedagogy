@@ -155,7 +155,7 @@ def user_translation(transcribed_text):
     
 
 project_id = "resonant-tract-404715"
-language_codes = ["en-US", "de-DE", "it-IT"]
+language_codes = ["it-IT"]
 audio_file = "output.wav"
 
 information_extractor = InformationExtractor()

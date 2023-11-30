@@ -11,6 +11,7 @@ class InformationExtractor:
     def extract_information(self, text: str, prompt: str, temperature = 0.5, max_retries=5, timeout=5) -> str:
         for i in range(max_retries):
             try:
+                start_time = time.time()  # Start the timer
                 response = openai.ChatCompletion.create(
                     model = "gpt-3.5-turbo",
                     messages = [
@@ -22,6 +23,9 @@ class InformationExtractor:
                     temperature=temperature,
                     timeout=timeout  # Add a timeout
                 )
+                end_time = time.time()  # End the timer
+
+                print("Time taken for OpenAI API request: {} seconds".format(end_time - start_time))
                 information = response['choices'][0]['message']['content']
                 return information
             except (openai.error.OpenAIError, requests.exceptions.Timeout):
